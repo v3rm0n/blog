@@ -26,7 +26,7 @@ title: Maido's stuff                          # the main title
 tagline: Personal projects and other ideas   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  Writing about anything I have done that might be interesting to others or just for documenting it for myself.
+  Writing about stuff I've done that might be interesting, but mostly for documenting it for myself.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://blog.maido.io'

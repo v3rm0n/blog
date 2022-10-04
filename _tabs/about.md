@@ -9,12 +9,12 @@ order: 4
 My name is Maido.
 
 I've been a software developer since 2008.
-Freelance consultant at [Enum][enum].
+Freelance consultant dealing with everything Java/Kotlin, Spring Boot, React, AWS, Postgres, Flutter
+related.
 
 Interested in software and all analog/digital electronics (including music).
 
-I started this blog mainly because I find when I'm writing about things I need to understand them
-first so it forces me to focus more and learn instead of blindly following instructions on the
-internet.
-
-[enum]: https://enum.ee
+I started this blog because
+when I'm writing about a topic I need to understand it more than when I'm just hacking stuff. It
+forces me to focus more and learn why instead how and not to blindly follow
+instructions on the internet.
