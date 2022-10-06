@@ -14,7 +14,7 @@ out of a digital project.
 
 **TL;DR** The project is [here][pico-synth].
 
-## Ingredients
+## Components
 
 What components does a digital synthesizer need?
 
