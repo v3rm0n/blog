@@ -19,7 +19,7 @@ text. After you choose a profile it is exported to the environment, and you don'
 
 # What profile is currently active?
 
-Another quick tip for **zsh** users: add the profile environment variable to **RPROMPT** (right side
+Quick tip for **zsh** users: add the profile environment variable to **RPROMPT** (right side
 of your shell prompt) for a quick glance to your
 active profile: `RPROMPT='${AWS_PROFILE}'`
 
@@ -27,13 +27,13 @@ active profile: `RPROMPT='${AWS_PROFILE}'`
 
 Another great trick is to change the profile automatically based on what directory you have open in
 your shell. For that you can use [direnv][direnv] and add an *.envrc* file to every directory where
-you need the profile to be changed like:
+you need the profile to be changed, like:
 
 ```shell
 export AWS_PROFILE=someprofile
 ```
 
-It works recursively do you only need to add it to the root directory.
+It works recursively: you only need to add the file to the root directory.
 
 [fzf]: https://github.com/junegunn/fzf
 [direnv]: https://direnv.net
