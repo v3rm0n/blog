@@ -1,10 +1,8 @@
 ---
 layout: post
-title:  "Greenhouse window opener over WIFI"
+title:  "Greenhouse window opener over Wi-Fi"
 tags:  hardware digital esphome
 ---
-
-## Background
 
 I have a summerhouse, but it's a bit of a drive from where I live. On the grounds there is a
 greenhouse. When the temperature in the greenhouse gets too high you need to open a window. Since I
@@ -119,8 +117,8 @@ not deterministic, but I found that 7 seconds is enough to open/close the window
 
 ## Case
 
-When everything was working properly, I printed a case and jammed all the electronics in there while
-of course breaking a bunch of wires that were soldered to the controller buttons so I needed to open
+When everything was working properly, I printed a case and jammed all the electronics in there and
+of course breaking a bunch of wires that were soldered to the controller buttons, so I needed to open
 it up again and rewire it :)
 
 ## Conclusion

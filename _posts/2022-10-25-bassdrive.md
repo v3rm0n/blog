@@ -4,8 +4,6 @@ title:  "Bassdrive Radio addon for VLC"
 tags: music api lua
 ---
 
-## Background
-
 I have been listening to [Bassdrive Radio][bd] almost daily for over 10 years now. It's a worldwide
 drum and bass radio, but it's aired from the USA which means that usually when I'm active they are
 airing reruns, so I listen to the shows in the [archive][bd-archive] instead. I didn't

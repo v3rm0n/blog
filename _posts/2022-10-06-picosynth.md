@@ -4,8 +4,6 @@ title:  "Raspberry PI Pico based digital synth: Part 1"
 tags:  raspberry-pi midi hardware music diy digital
 ---
 
-## Background
-
 As established in the [first post][midi2cv] I've been always into electronic music (listening
 to [Bassdrive][bassdrive] pretty much all day long), but lately I've tried to combine it with my
 other interest: electronics. I decided I want to try to build a digital synthesizer. Analog
