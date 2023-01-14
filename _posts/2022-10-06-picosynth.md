@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Raspberry PI Pico based digital synth: Part 1"
-tags:  raspberry-pi midi hardware music diy digital
+tags:  raspberry-pi-pico midi hardware music diy digital
 ---
 
 As established in the [first post][midi2cv] I've been always into electronic music (listening
