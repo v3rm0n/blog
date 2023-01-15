@@ -47,6 +47,9 @@ social:
     - https://twitter.com/v3rm0n      # change to your twitter homepage
     - https://www.linkedin.com/in/maidokaara
 
+google_analytics:
+  id: 'G-JTDWT4FBN'
+
 # Prefer color scheme setting.
 #
 # Note: Keep empty will follow the system prefer color by default,
