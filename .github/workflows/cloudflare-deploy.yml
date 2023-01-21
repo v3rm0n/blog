@@ -1,0 +1,52 @@
+name: "Build and deploy to CloudFlare"
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths-ignore:
+      - .gitignore
+      - README.md
+      - LICENSE
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Publish to Cloudflare Pages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Build site
+        run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: "production"
+
+      - name: Test site
+        run: |
+          bundle exec htmlproofer _site --disable-external --check-html --allow_hash_href
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: d9229409f838e8b589fd9cf96f849799
+          projectName: blog
+          directory: "_site${{ steps.pages.outputs.base_path }}"
+          # Optional: Enable this if you want to have GitHub Deployments triggered
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
