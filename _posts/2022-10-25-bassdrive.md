@@ -138,7 +138,7 @@ end
 
 And here's how it looks like:
 
-![Addon](/assets/images/bassdrive/vlc.png)
+![Addon](/assets/images/bassdrive/vlc.webp)
 
 ## Install
 

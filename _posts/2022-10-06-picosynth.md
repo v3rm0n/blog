@@ -47,7 +47,7 @@ because I wanted to add more than three potentiometers.
 I built a prototype on a breadboard. That way I can quickly try things out and test the proof of
 concept by writing code before I commit to a proper build:
 
-![Prototype](/assets/images/picosynth/proto.jpg)
+![Prototype](/assets/images/picosynth/proto.webp)
 
 It's just a Pico connected to the Audio Pack over I2C, a rotary encoder and an analog multiplexer (I
 already removed the screen, read on to know why).
@@ -63,7 +63,7 @@ case. I have an [Ender 5 Pro][ender5] 3D printer, which mean I could easily thro
 front panel only sketches in [SketchUp][sketchup], print them out and see what it would feel like.
 
 First version of the faceplate:
-![Faceplate V1](/assets/images/picosynth/faceplatev1.png)
+![Faceplate V1](/assets/images/picosynth/faceplatev1.webp)
 
 Leftmost column is for rotary encoders, rightmost column for push buttons, rectangle is for the
 screen and all the others are pots (small notches are to hold the pots in place).
@@ -72,14 +72,14 @@ right, notches were too small and through the plate. I made the plate thicker, t
 can be hidden. I replaced one of the push buttons with a power button that is a bit larger.
 
 Here is the second version:
-![Faceplate V2](/assets/images/picosynth/faceplatev2.png)
+![Faceplate V2](/assets/images/picosynth/faceplatev2.webp)
 
 This was pretty good, but the plate thickness over the notches was not enough. You could see through
 it. I made the plate a bit thicker.
 
 This is what it looked like with pots, encoders and buttons attached:
 
-![Faceplate](/assets/images/picosynth/faceplate.jpg)
+![Faceplate](/assets/images/picosynth/faceplate.webp)
 
 ## Conclusion
 

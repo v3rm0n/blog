@@ -125,7 +125,7 @@ it up again and rewire it :)
 
 This is what it looks like before assembly:
 
-![Ready product](/assets/images/greenhouse/ready.jpg)
+![Ready product](/assets/images/greenhouse/ready.webp)
 
 I haven't installed it yet, so I don't know how well it works.
 

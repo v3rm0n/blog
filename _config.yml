@@ -186,3 +186,12 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+plugins:
+  - jekyll-webp
+
+webp:
+  enabled: true
+  quality: 75
+  img_dir: ["/assets/"]
+  nested: true
