@@ -105,10 +105,10 @@ project soon.
 
 [midi2cv]: https://maido.io/posts/midi2cv/
 
-[bassdrive]: http://www.bassdrive.com
+[bassdrive]: https://www.bassdrive.com
 
 [multiplexer]: https://www.sparkfun.com/products/9056
 
 [ender5]: https://www.creality.com/products/ender-5-pro-3d-printer
 
-[sketchup]: http://app.sketchup.com/
+[sketchup]: https://app.sketchup.com/

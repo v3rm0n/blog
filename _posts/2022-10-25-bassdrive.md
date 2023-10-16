@@ -81,7 +81,7 @@ function main()
 
 	vlc.sd.add_item({path=live, title='Live'})
 	
-	local parsed, _, err = parse_json('http://bd.maido.io/api.json')
+	local parsed, _, err = parse_json('https://bd.maido.io/api.json')
 
 	if err ~= nil then
         	vlc.msg.err("Error to parse JSON response: " .. err)
@@ -157,7 +157,7 @@ To install, copy the script to the following location:
 
 [bd-api-json]: https://bd.maido.io/api.json
 
-[bd-archive]: http://archives.bassdrivearchive.com
+[bd-archive]: https://archives.bassdrivearchive.com
 
 [vlc]: https://www.videolan.org/vlc/
 
