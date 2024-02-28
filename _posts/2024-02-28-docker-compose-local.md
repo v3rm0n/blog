@@ -105,22 +105,16 @@ To get around this issue you can use this "hack" with Testcontainers after the c
 
 final var kafkaPort = composeContainer.getServicePort("kafka", 9094);
 
-composeContainer.
-
-getContainerByServiceName("kafka").
-
-map(it ->{
-final var result = it.execInContainer("/opt/bitnami/kafka/bin/kafka-configs.sh",
-  "--bootstrap-server", "localhost:9092",
-  "--entity-type", "brokers",
-  "--entity-name", "1",
-  "--alter", "--add-config", "advertised.listeners=[PLAINTEXT://kafka:9092,EXTERNAL://localhost:%s]".formatted(kafkaPort));
-    if(result.exitCode !=0){
-  throw new
-
-IllegalStateException("Could not override advertised listeners");
-    }
-      });
+composeContainer.getContainerByServiceName("kafka").map(it -> {
+  final var result = it.execInContainer("/opt/bitnami/kafka/bin/kafka-configs.sh",
+    "--bootstrap-server", "localhost:9092",
+    "--entity-type", "brokers",
+    "--entity-name", "1",
+    "--alter", "--add-config", "advertised.listeners=[PLAINTEXT://kafka:9092,EXTERNAL://localhost:%s]".formatted(kafkaPort));
+  if(result.exitCode !=0) {
+    throw new IllegalStateException("Could not override advertised listeners");
+  }
+});
 ```
 
 [docker-compose]: https://docs.docker.com/compose/
