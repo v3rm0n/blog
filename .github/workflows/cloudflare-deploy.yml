@@ -38,11 +38,17 @@ jobs:
         run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: "production"
+          
+      - name: Cache HTMLProofer
+        id: cache-htmlproofer
+        uses: actions/cache@v2
+        with:
+          path: tmp/.htmlproofer
+          key: ${{ runner.os }}-htmlproofer
 
       - name: Test site
         run: |
           bundle exec htmlproofer _site \
-            \-\-disable-external=true \
             \-\-ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/,/^https://fonts.gstatic.com/,/^https:\/\/fonts.googleapis.com/,/^https:\/\/www.googletagmanager.com/,/^https:\/\/www.linkedin.com/"
 
       - name: Publish to Cloudflare Pages

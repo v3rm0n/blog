@@ -127,4 +127,4 @@ composeContainer.getContainerByServiceName("kafka").map(it -> {
 
 [compose-project-name]: https://docs.docker.com/compose/project-name/
 
-[compose-env-file]: https://docs.docker.com/compose/environment-variables/set-environment-variables/#substitute-with-an-env-file
+[compose-env-file]: https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/#use-the-env_file-attribute
