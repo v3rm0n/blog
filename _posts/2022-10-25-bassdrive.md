@@ -157,7 +157,7 @@ To install, copy the script to the following location:
 
 [bd-api-json]: https://bd.maido.io/api.json
 
-[bd-archive]: https://archives.bassdrivearchive.com
+[bd-archive]: http://archives.bassdrivearchive.com
 
 [vlc]: https://www.videolan.org/vlc/
 
