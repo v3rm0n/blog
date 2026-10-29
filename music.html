@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)https://music.yeet.lightyear.ee/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maido's Music Corner</title>
+<meta name="description" content="One artist every Friday at 9, posted in #music. Every pick is pulled straight from Maido's own offline music library and chosen by hand. No algorithm, just a lot of listening.">
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Maido's Music Corner_files/css2" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF0F3; --card:#FFFFFF; --ink:#0B0F1A; --ink-2:#343947; --muted:#6B7180;
+    --line:#D9DDE5; --line-2:#C5CAD4; --blue:#1236B8; --blue-deep:#0B2593; --amber:#F2B233;
+    --display:"Bricolage Grotesque","Helvetica Neue",Helvetica,Arial,sans-serif;
+    --serif:"Literata",Georgia,"Times New Roman",serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --wrap:1200px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:16px;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  [hidden]{display:none!important}
+  :focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+  .mono{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+  .display{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1;font-variation-settings:"wdth" 82,"opsz" 96}
+  .lbl{display:block}
+
+  /* top bar */
+  .top{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:20px 24px;flex-wrap:wrap}
+  .wordmark{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.01em;text-decoration:none;font-variation-settings:"wdth" 90}
+  .wordmark span{color:var(--blue)}
+  .top .mono{color:var(--muted)}
+  .top .mono a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line-2)}
+  .top .mono a:hover{border-color:var(--ink)}
+  .sim{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--ink);background:var(--amber);text-align:center;padding:8px 12px}
+
+  /* hero: this week's sleeve */
+  .hero{background:var(--blue);color:#fff}
+  .hero .wrap{display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:center;padding-top:52px;padding-bottom:52px}
+  .hero-art{width:300px;aspect-ratio:1;background:var(--blue-deep);position:relative;overflow:hidden;box-shadow:0 24px 48px rgba(0,0,0,.28)}
+  .hero-art img,.hero-art iframe{width:100%;height:100%;display:block;border:0}
+  .hero-art img{object-fit:cover}
+  .eyebrow{color:var(--amber)}
+  .hero h1{font-size:clamp(46px,7.6vw,104px);margin:14px 0 12px;text-wrap:balance}
+  .hero .sub{font-family:var(--mono);font-size:13px;letter-spacing:.02em;color:rgba(255,255,255,.78)}
+  .hero .why{font-size:18px;font-style:italic;max-width:58ch;margin:20px 0 26px;color:rgba(255,255,255,.92)}
+  .hero .why:empty{display:none}
+  .actions{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:12px 18px;border-radius:3px;text-decoration:none;cursor:pointer;border:1.5px solid transparent;display:inline-flex;align-items:center;gap:8px;transition:background .15s,color .15s,border-color .15s}
+  .btn-solid{background:#fff;color:var(--blue)}
+  .btn-solid:hover{background:var(--amber);color:var(--ink)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+  .btn-ghost:hover{border-color:#fff}
+
+  /* about: where the music comes from */
+  .about{background:var(--card);border-bottom:1px solid var(--line-2)}
+  .about .wrap{display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:start;padding-top:44px;padding-bottom:44px}
+  .about .lbl{color:var(--blue);padding-top:10px}
+  .about .lbl::before{content:"";display:inline-block;width:18px;height:2px;background:var(--amber);margin-right:10px;vertical-align:middle}
+  .about p{font-size:clamp(22px,2.9vw,31px);line-height:1.28;letter-spacing:-.008em;color:var(--ink);max-width:36ch;text-wrap:balance}
+
+  /* catalogue toolbar */
+  .toolbar{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding:48px 0 18px;border-bottom:2px solid var(--ink);flex-wrap:wrap}
+  .toolbar h2{font-size:34px;font-variation-settings:"wdth" 85,"opsz" 40}
+  .toolbar .count{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:10px;min-height:16px}
+  .search{position:relative;flex:0 1 360px;min-width:240px}
+  .search input{width:100%;font-family:var(--mono);font-size:13px;padding:12px 14px 12px 40px;background:var(--card);border:1.5px solid var(--line-2);border-radius:3px;color:var(--ink);outline:none;transition:border-color .15s;-webkit-appearance:none;appearance:none}
+  .search input:focus{border-color:var(--blue)}
+  .search input::placeholder{color:var(--muted)}
+  .search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round}
+
+  /* sleeves */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:36px 28px;padding:32px 0 72px;align-items:start}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:4px;display:flex;flex-direction:column;overflow:hidden;
+        animation:rise .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(min(var(--n,0),12)*45ms);transition:box-shadow .2s,border-color .2s}
+  .card:hover{box-shadow:0 10px 30px rgba(11,15,26,.10);border-color:var(--line-2)}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .art{position:relative;aspect-ratio:1;background:#DFE3EA;overflow:hidden}
+  .art img{width:100%;height:100%;object-fit:cover;display:block}
+  .art iframe{width:100%;height:100%;border:0;display:block;background:#191414}
+  .art.tall,.hero-art.tall{aspect-ratio:auto}
+  .art.tall iframe,.hero-art.tall iframe{background:#fff}
+  .art.noart img{display:none}
+  .tab{position:absolute;top:0;left:0;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:6px 10px;background:var(--ink);color:#fff;border-radius:0 0 3px 0}
+  .tab.week{background:var(--amber);color:var(--ink)}
+  .play{position:absolute;left:12px;bottom:12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+        background:rgba(11,15,26,.88);color:#fff;border:0;border-radius:999px;padding:9px 14px 9px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .15s,color .15s}
+  .play::before{content:"";width:0;height:0;border-style:solid;border-width:5px 0 5px 8px;border-color:transparent transparent transparent currentColor}
+  .play:hover{background:var(--amber);color:var(--ink)}
+  .body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:12px;flex:1}
+  .posted{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 12px}
+  .posted a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line-2)}
+  .posted a:hover{border-color:var(--ink)}
+  .posted .enc{color:var(--muted)}
+  .card h3{font-size:30px;line-height:1.02;font-variation-settings:"wdth" 82,"opsz" 40;margin-top:-2px}
+  .meta{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.01em}
+  .meta b{font-weight:500;color:var(--ink-2)}
+  .bio{font-size:15.5px;color:var(--ink-2)}
+  .fact{border-left:2px solid var(--amber);padding:2px 0 2px 14px;font-size:14.5px;color:var(--ink-2)}
+  .fact .lbl{margin-bottom:4px;color:var(--ink)}
+  .start{margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
+  .start .lbl{color:var(--muted)}
+  .start .rel{font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.01em;margin:6px 0 4px;font-variation-settings:"wdth" 88}
+  .start .rel .yr{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--muted);letter-spacing:.02em;margin-left:8px}
+  .start .why{font-style:italic;font-size:14.5px;color:var(--ink-2)}
+  .links{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px}
+  .links a{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--blue);text-decoration:none}
+  .links a:hover{text-decoration:underline}
+  .card.is-week{border-color:var(--amber);box-shadow:0 0 0 2px var(--amber)}
+
+  .noresults{display:none;padding:56px 0 80px;font-size:17px;color:var(--muted);text-align:center}
+  footer{border-top:1px solid var(--line-2);padding:26px 0 56px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  footer a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line-2)}
+
+  @media(max-width:760px){
+    .hero .wrap{grid-template-columns:1fr;gap:26px;padding-top:36px;padding-bottom:40px}
+    .hero-art{width:min(100%,320px)}
+    .hero h1{font-size:clamp(40px,12vw,72px)}
+    .about .wrap{grid-template-columns:1fr;gap:12px;padding-top:28px;padding-bottom:30px}
+    .about .lbl{padding-top:0}
+    .about p{font-size:21px}
+    .toolbar{padding-top:36px}
+    .toolbar h2{font-size:28px}
+    .search{flex-basis:100%}
+    .grid{grid-template-columns:1fr;gap:28px}  }
+  @media(prefers-reduced-motion:reduce){
+    .card{animation:none}
+    *{transition:none!important}
+  }
+</style>
+</head>
+<body>
+<header class="wrap top">
+  <a class="wordmark" href="https://music.yeet.lightyear.ee/#">Maido's <span>Music Corner</span></a>
+  <div class="mono">Every Friday, 9 AM · posted in <a href="https://golightyear.slack.com/archives/C07ND642G3B" target="_blank" rel="noopener">#music</a></div>
+</header>
+<div class="sim" id="simNote" hidden=""></div>
+
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="hero-art" id="heroArt" data-for="27"><img src="./Maido's Music Corner_files/ab67616d0000b273bfa84043b66923d23259a0bf" alt="Listening Tree cover"></div>
+    <div>
+      <div class="mono eyebrow" id="wkLabel">Latest pick · vol. 43 · Fri 23 Oct</div>
+      <h1 class="display" id="wkName">Tim Exile</h1>
+      <div class="sub" id="wkSub">IDM / drum &amp; bass / live electronics · England</div>
+      <p class="why" id="wkWhy">Start with Listening Tree (2009): His Warp debut and most celebrated record — the one where the noise finally turns into pop songs.</p>
+      <div class="actions">
+        <button class="btn btn-solid" id="wkPlay" type="button" data-embed="https://open.spotify.com/embed/album/6vhxnw2bOpvdZduJ4T49K1?utm_source=generator&amp;theme=0">Play the album</button>
+        <a class="btn btn-ghost" id="wkJump" href="https://music.yeet.lightyear.ee/#artist-27">Read the notes ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" aria-labelledby="aboutLbl">
+  <div class="wrap">
+    <div class="mono lbl" id="aboutLbl">About the picks</div>
+    <p>Every pick is pulled straight from my own offline music library. One artist a week, chosen by hand. No algorithm, just a lot of listening.</p>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="toolbar">
+    <div>
+      <h2 class="display">The catalogue</h2>
+      <div class="count" id="count">28 picks so far</div>
+    </div>
+    <label class="search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      <input id="search" type="search" placeholder="Search the catalogue" autocomplete="off" aria-label="Search the catalogue">
+    </label>
+  </div>
+  <div class="grid" id="grid"><article class="card" style="--n: 0; display: flex;" data-search="tim exile idm / drum &amp; bass / live electronics england listening tree vol. 43 vol 43" id="artist-27">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b273bfa84043b66923d23259a0bf" alt="Listening Tree cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 43</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/6vhxnw2bOpvdZduJ4T49K1?utm_source=generator&amp;theme=0" aria-label="Play Listening Tree by Tim Exile">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1792739720702359" target="_blank" rel="noopener" title="Open the #music post">vol. 43 · 23 Oct 2026</a></div>
+      <h3 class="display">Tim Exile</h3>
+      <div class="meta"><b>IDM / drum &amp; bass / live electronics</b> · England</div>
+      <p class="bio">Tim Exile is English producer Timothy Charles Shaw, who started on classical violin at 12 and spent the 2000s moving from dark drum &amp; bass on Moving Shadow through warped IDM on Planet Mu to a genuinely pop-leaning record on Warp. The real draw was always the live show — entirely improvised, built from looped and pitch-shifted vocals, gabba beats and whatever synth textures he's cooking up in the moment.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>He got so fed up with ordinary DJing that he built his own performance software from scratch, and Native Instruments turned it into the commercial plugins The Finger and The Mouth. He later rebuilt the idea as Endlesss, a remote jamming app that blew up during lockdown with artists like Imogen Heap jumping in.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Listening Tree<span class="yr">2009</span></div>
+        <div class="why">His Warp debut and most celebrated record — the one where the noise finally turns into pop songs.</div>
+        <div class="links"><a href="https://open.spotify.com/album/6vhxnw2bOpvdZduJ4T49K1" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 1; display: flex;" data-search="the streets uk garage / british rap birmingham, england original pirate material vol. 42 vol 42" id="artist-26">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b27306c13fa6cb965c4778692e14" alt="Original Pirate Material cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 42</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/0hkZGxfsFypXbjq15hM6U9?utm_source=generator&amp;theme=0" aria-label="Play Original Pirate Material by The Streets">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1792134505247769" target="_blank" rel="noopener" title="Open the #music post">vol. 42 · 16 Oct 2026</a></div>
+      <h3 class="display">The Streets</h3>
+      <div class="meta"><b>UK garage / British rap</b> · Birmingham, England</div>
+      <p class="bio">The Streets is Mike Skinner, a Birmingham lad who moved to Brixton at the turn of the millennium with a laptop and basically invented a whole new way of rapping. He spits over 2-step UK garage beats in his own thick geezer accent, about pints, kebabs, PlayStation and skint Fridays. Not grime, not garage, not hip-hop, but somehow all three at once — and nobody's sounded quite like it since.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>He recorded his debut in a Brixton flat using an emptied-out wardrobe stuffed with duvets as his vocal booth, and the whole thing cost under £4,000 to make. He still writes his lyrics as text messages to himself.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Original Pirate Material<span class="yr">2002</span></div>
+        <div class="why">The album that turned everyday British life into pop art — still sounds like nothing else over 20 years on.</div>
+        <div class="links"><a href="https://open.spotify.com/album/0hkZGxfsFypXbjq15hM6U9" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 2; display: flex;" data-search="praful chill-out nu-jazz / sax &amp; electronica amsterdam, netherlands one day deep vol. 41 vol 41" id="artist-25">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b273ba602b6e6a3e84eb52f37795" alt="One Day Deep cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 41</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/71UgBMFnQc1gub6oorX597?utm_source=generator&amp;theme=0" aria-label="Play One Day Deep by Praful">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1791526518462229" target="_blank" rel="noopener" title="Open the #music post">vol. 41 · 9 Oct 2026</a></div>
+      <h3 class="display">Praful</h3>
+      <div class="meta"><b>Chill-out nu-jazz / sax &amp; electronica</b> · Amsterdam, Netherlands</div>
+      <p class="bio">Praful is a German-born saxophonist who finished a jazz degree in Amsterdam and then took a very unusual detour before his career really began. He blends jazz, acid jazz, Latin rhythms and electronica into something warm, breathy and unhurried — smoky sax and bansuri flute floating over soft electronic grooves. Built for a slow Sunday morning.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>Straight out of jazz school he spent six months in an Osho ashram in India studying the bansuri flute, and came back with a new name. Years later his single 'Sigh' camped out on the Billboard charts for over 70 weeks and landed him a US deal on a label co-run by Dave Koz.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">One Day Deep<span class="yr">2001</span></div>
+        <div class="why">Eleven tracks of smoky, chilled-out sax and electronics — the record that made American radio fall for his Dutch-Indian-German hybrid sound.</div>
+        <div class="links"><a href="https://open.spotify.com/album/71UgBMFnQc1gub6oorX597" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 3; display: flex;" data-search="your infamous harp glitch-hop / jungle with angelic vocals chicago, usa forever transient vol. 40 vol 40" id="artist-15">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b273e966ddca563fe9a979ea60ed" alt="Forever Transient cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 40</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/67qrVSMwEa2pPkVoel2IIC?utm_source=generator&amp;theme=0" aria-label="Play Forever Transient by Your Infamous Harp">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1790921681321129" target="_blank" rel="noopener" title="Open the #music post">vol. 40 · 2 Oct 2026</a></div>
+      <h3 class="display">Your Infamous Harp</h3>
+      <div class="meta"><b>Glitch-hop / jungle with angelic vocals</b> · Chicago, USA</div>
+      <p class="bio">Your Infamous Harp is the husband-and-wife duo of Andy and Sara Domin, who've been making music together since 2006 and somehow turn skittering IDM, jungle breakbeats and glitch-hop into something genuinely beautiful. Picture frantic, chopped-up drum programming colliding with Sara's gorgeous angelic vocals floating right on top. It's the kind of gloriously weird, lovingly handcrafted electronic music you feel lucky to stumble into.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>Their 2007 debut is titled 'Prah Suomafni Ruoy' — literally 'Your Infamous Harp' spelled backwards. They also moonlight under solo aliases Kept Blue and Ceratops, so the rabbit hole goes deeper than you'd think.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Forever Transient<span class="yr">2010</span></div>
+        <div class="why">Twelve polished tracks weaving jungle, dubstep, glitch and house into one cohesive story — their most realised, front-to-back statement.</div>
+        <div class="links"><a href="https://open.spotify.com/album/67qrVSMwEa2pPkVoel2IIC" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 4; display: flex;" data-search="fatboy slim big beat / electronic dance brighton, england you've come a long way, baby vol. 39 vol 39" id="artist-14">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b27358301aa27597bf07c1c39637" alt="You've Come a Long Way, Baby cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 39</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/5dbW25KDJWBkv2gtaQdmxJ?utm_source=generator&amp;theme=0" aria-label="Play You've Come a Long Way, Baby by Fatboy Slim">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1790316465231589" target="_blank" rel="noopener" title="Open the #music post">vol. 39 · 25 Sep 2026</a></div>
+      <h3 class="display">Fatboy Slim</h3>
+      <div class="meta"><b>Big beat / electronic dance</b> · Brighton, England</div>
+      <p class="bio">Fatboy Slim is Norman Cook, the cheeky Brighton legend who basically invented the big-beat sound and turned the late-'90s into one giant sweaty dancefloor. He chops up funk, hip-hop, soul and acid house into gloriously chaotic, hook-stuffed bangers that feel like a party crammed into three minutes. If you want music that grins at you the whole way through, this is it.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>Before going solo he was the bassist in indie band The Housemartins, and his iconic 'Weapon of Choice' video starring a dancing Christopher Walken almost featured Norman himself — he had to bail because his wife Zoe Ball was giving birth that weekend.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">You've Come a Long Way, Baby<span class="yr">1998</span></div>
+        <div class="why">The definitive big-beat record, stacked with 'The Rockafeller Skank,' 'Praise You' and 'Right Here, Right Now' — basically his greatest hits in one shot.</div>
+        <div class="links"><a href="https://open.spotify.com/album/5dbW25KDJWBkv2gtaQdmxJ" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 5; display: flex;" data-search="orbital rave-era techno / electronica sevenoaks, kent, england orbital 2 vol. 38 vol 38" id="artist-24">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b27377b9f7b0a2ac5f99ea5f230b" alt="Orbital 2 cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 38</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/1JYyYFJSYrXMHLe7Dz1B3W?utm_source=generator&amp;theme=0" aria-label="Play Orbital 2 by Orbital">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1789711684473559" target="_blank" rel="noopener" title="Open the #music post">vol. 38 · 18 Sep 2026</a></div>
+      <h3 class="display">Orbital</h3>
+      <div class="meta"><b>Rave-era techno / electronica</b> · Sevenoaks, Kent, England</div>
+      <p class="bio">Orbital are brothers Phil and Paul Hartnoll, who came out of the M25 rave scene in 1989 and became the act that made techno work as an album, a headline set and a proper emotional experience. Their sound is big, melodic and euphoric — acid squelch, cinematic strings and breakbeats building into the goosebump moments that made their Glastonbury 1994 set a legend. Thirty-odd years on they still headline festivals in the same torch glasses.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>The name comes from the M25, the orbital motorway that ferried ravers to illegal parties around London. Their breakthrough single 'Chime' was recorded on their dad's cassette deck — and at the 2012 Paralympics opening ceremony Stephen Hawking joined them on stage wearing their trademark torch glasses.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Orbital 2<span class="yr">1993</span></div>
+        <div class="why">The Brown Album — 'Halcyon + On + On', 'Lush 3' and 'Impact' in one place; the record that proved dance music could be an album.</div>
+        <div class="links"><a href="https://open.spotify.com/album/1JYyYFJSYrXMHLe7Dz1B3W" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 6; display: flex;" data-search="ruby my dear melodic breakcore / idm / jungle toulouse, france brame vol. 37 vol 37" id="artist-23">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b2730f77bbc7eff23c2be772e51c" alt="Brame cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 37</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/5bzbSjiKjMQI9mxzEZDAUe?utm_source=generator&amp;theme=0" aria-label="Play Brame by Ruby My Dear">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1789111401538439" target="_blank" rel="noopener" title="Open the #music post">vol. 37 · 11 Sep 2026</a></div>
+      <h3 class="display">Ruby My Dear</h3>
+      <div class="meta"><b>Melodic breakcore / IDM / jungle</b> · Toulouse, France</div>
+      <p class="bio">Ruby My Dear is Julien Chastagnol, a Toulouse producer who took breakcore — the fastest, most chaotic corner of electronic music — and taught it to sing. Under the frantic drum programming sit haunting piano lines, dream-like atmospheres and real instruments, so every track feels like a film noir that suddenly breaks into a sprint. If you thought this stuff was just noise, he's the one who'll change your mind.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>His name is a Thelonious Monk ballad and his debut album title nods to Ornette Coleman's <i>The Shape of Jazz to Come</i> — a breakcore producer who thinks like a jazz musician. He's also Igorrr's regular partner in crime: the two made the album <i>Maigre</i> together in 2014.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Brame<span class="yr">2018</span></div>
+        <div class="why">Jazz meets hunting horn meets classical music meets full breakcore mayhem — with Igorrr on guitars and opera singer Laure Le Prunenec on vocals, it sounds like nothing else.</div>
+        <div class="links"><a href="https://open.spotify.com/album/5bzbSjiKjMQI9mxzEZDAUe" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 7; display: flex;" data-search="worakls cinematic melodic house &amp; techno paris, france porto vol. 36 vol 36" id="artist-13">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b273b57c29c7d869a0f2f5f7f309" alt="Porto cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 36</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/46lfRg91uo3wq2eZEIq4dY?utm_source=generator&amp;theme=0" aria-label="Play Porto by Worakls">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1788502119386289" target="_blank" rel="noopener" title="Open the #music post">vol. 36 · 4 Sep 2026</a></div>
+      <h3 class="display">Worakls</h3>
+      <div class="meta"><b>Cinematic melodic house &amp; techno</b> · Paris, France</div>
+      <p class="bio">Worakls is the French producer (Kevin Rodrigues) who basically asked 'what if a film score and a club banger had a beautiful baby?' — and then pulled it off. He layers sweeping strings, piano and lush orchestration over hypnotic melodic techno, so it hits you in the chest and on the dancefloor at the same time. If you've ever wanted music that feels like the climax of a movie you can also dance to, this is your guy.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>He didn't just sample orchestras — he assembled a real one. Worakls co-founded the Hungry Music label and tours as 'Worakls Orchestra,' conducting a full live ensemble at major European venues, fusing the DJ booth and the symphony hall into one show.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Porto<span class="yr">2014</span></div>
+        <div class="why">His biggest hit — 90M+ streams and the perfect gateway into his cinematic-techno world.</div>
+        <div class="links"><a href="https://open.spotify.com/album/46lfRg91uo3wq2eZEIq4dY" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 8; display: flex;" data-search="blocks &amp; escher deep, cinematic drum &amp; bass / jungle london, england something blue vol. 35 vol 35" id="artist-22">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b27339e114b0d201d98444b6a8de" alt="Something Blue cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 35</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/1VJzGTtF0wvUS8fpk2nyWt?utm_source=generator&amp;theme=0" aria-label="Play Something Blue by Blocks &amp; Escher">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1787897266964269" target="_blank" rel="noopener" title="Open the #music post">vol. 35 · 28 Aug 2026</a></div>
+      <h3 class="display">Blocks &amp; Escher</h3>
+      <div class="meta"><b>Deep, cinematic drum &amp; bass / jungle</b> · London, England</div>
+      <p class="bio">A mysterious drum &amp; bass duo out of London who'd rather let the music speak than chase the spotlight. Their sound sits at the moody, emotive end of D&amp;B and jungle — deep, cinematic and built for headphones on a late-night walk.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>They started out on legendary labels like Digital Soundboy and Renegade Hardware before launching their own imprint, Narratives Music — and Goldie himself once said of their work, simply, 'this is art.'</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Something Blue<span class="yr">2018</span></div>
+        <div class="why">Their Metalheadz full-length roams through jungle and D&amp;B without ever losing its emotional core — the perfect way in.</div>
+        <div class="links"><a href="https://open.spotify.com/album/1VJzGTtF0wvUS8fpk2nyWt" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 9; display: flex;" data-search="tv on the radio art-rock / post-punk soul brooklyn, new york, usa dear science vol. 34 vol 34" id="artist-21">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b273a6493c833ea1b6bea3642351" alt="Dear Science cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 34</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/6RF9h1d8zkaugfMbFQGO70?utm_source=generator&amp;theme=0" aria-label="Play Dear Science by TV on the Radio">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1787292455959649" target="_blank" rel="noopener" title="Open the #music post">vol. 34 · 21 Aug 2026</a></div>
+      <h3 class="display">TV on the Radio</h3>
+      <div class="meta"><b>Art-rock / post-punk soul</b> · Brooklyn, New York, USA</div>
+      <p class="bio">Brooklyn art-rockers who've been doing genuinely weird, genuinely gorgeous stuff since 2001 — layered vocal loops, fuzzed-out guitars and horns colliding with post-punk and soul in ways that shouldn't work but absolutely do. Tunde Adebimpe and Dave Sitek started it as visual artists messing around, and it grew into one of the most inventive bands of the 2000s indie boom.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>David Bowie loved them so much he showed up as a guest vocalist on two tracks of their 2006 album, quietly co-signing a scrappy Brooklyn band at the height of his own mystique.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Dear Science<span class="yr">2008</span></div>
+        <div class="why">Their brightest, most accessible record — hip-hop beats, big hooks and zero filler, it's the perfect front door into their sound.</div>
+        <div class="links"><a href="https://open.spotify.com/album/6RF9h1d8zkaugfMbFQGO70" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 10; display: flex;" data-search="lu:k lo-fi bedroom jungle / early estonian d&amp;b estonia lu:k vol. 33 vol 33" id="artist-20">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/a3126679995_10.jpg" alt="Lu:k cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 33</span>
+      <button class="play" type="button" data-embed="https://bandcamp.com/EmbeddedPlayer/v=2/album=2914382663/size=large/bgcol=ffffff/linkcol=1236b8/tracklist=false/artwork=big/transparent=true/" data-h="470" aria-label="Play Lu:k by Lu:k">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1786687891263169" target="_blank" rel="noopener" title="Open the #music post">vol. 33 · 14 Aug 2026</a></div>
+      <h3 class="display">Lu:k</h3>
+      <div class="meta"><b>Lo-fi bedroom jungle / early Estonian D&amp;B</b> · Estonia</div>
+      <p class="bio">Picture teenage kids in mid-'90s Estonia — a dirt-poor, brand-new republic — taping UK jungle off Finnish late-night radio because that was the only way to hear it, then rebuilding it on entry-level software, custom-made soundcards and PCs that bandmate Tõnis Valk put together himself. That's Lu:k — Virko Veskoja and friends, quietly inventing Estonian jungle and drum &amp; bass between 1994 and 1997, before it even had a name here.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>The name 'Lu:k' was picked to mean nothing — it happens to be Estonian for 'hatch' or 'trap door'. Their two cassette albums and one 12" vanished for decades until Tallinn label Memme Vaev pressed eight of the tracks to vinyl in 2025.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Lu:k<span class="yr">2025 · tapes from 1994–97</span></div>
+        <div class="why">Eight rescued cuts, from the Minnie Riperton-sampling '94 stepper 'Lovin U' to the rave-era breakbeat of 'Kadunud leitud' — pure lo-fi bedroom jungle, weirdly ahead of its time.</div>
+        <div class="links"><a href="https://memmevaev.bandcamp.com/album/lu-k" target="_blank" rel="noopener">Listen on Bandcamp ↗</a><a href="https://www.youtube.com/watch?v=dKsdSLcu_hw" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 11; display: flex;" data-search="ott lush psychedelic dub / psy-dub somerset, united kingdom blumenkraft vol. 18 vol 18 vol. 31 vol 31" id="artist-1">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b2738f91e027e9349113e52bda6d" alt="Blumenkraft cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 31</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/09SNs519nzaxoa3um5zNGU?utm_source=generator&amp;theme=0" aria-label="Play Blumenkraft by Ott">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1777615413342639" target="_blank" rel="noopener" title="Open the #music post">vol. 18 · 1 May 2026</a><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1785478117252089" target="_blank" rel="noopener" title="Open the #music post"><span class="enc">encore</span> vol. 31 · 31 Jul 2026</a></div>
+      <h3 class="display">Ott</h3>
+      <div class="meta"><b>Lush psychedelic dub / psy-dub</b> · Somerset, United Kingdom</div>
+      <p class="bio">Ott (born Ott Langrell) is the undisputed wizard of psychedelic dub, building gorgeous, bass-heavy, kaleidoscopic soundscapes that wrap around you like a warm blanket. His music is impossibly detailed and trippy without ever being cheesy — all melting echoes and organic textures. If you've ever wanted dub reggae to take you to outer space, this is your guy.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>Before going solo he engineered and produced for Sinéad O'Connor, The Orb and Brian Eno, and he's a longtime collaborator of Shpongle's Simon Posford. His Hallucinogen 'In Dub' project basically reinvented psytrance as slow-motion dub and became a genre landmark.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Blumenkraft<span class="yr">2003</span></div>
+        <div class="why">His most beloved solo album and the perfect intro to psy-dub, opening with the iconic 'Jack's Cheese and Bread Snack.'</div>
+        <div class="links"><a href="https://open.spotify.com/album/09SNs519nzaxoa3um5zNGU" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 12; display: flex;" data-search="xploding plastix cinematic nu-jazz / big-beat oslo, norway amateur girlfriends go proskirt agents vol. 17 vol 17 vol. 30 vol 30" id="artist-0">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b2736d864da4ce8efabbf275cab8" alt="Amateur Girlfriends Go Proskirt Agents cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 30</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/0BsWbmvjVc8RWix4rNZ2hs?utm_source=generator&amp;theme=0" aria-label="Play Amateur Girlfriends Go Proskirt Agents by Xploding Plastix">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1777127551885719" target="_blank" rel="noopener" title="Open the #music post">vol. 17 · 25 Apr 2026</a><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1784873540697579" target="_blank" rel="noopener" title="Open the #music post"><span class="enc">encore</span> vol. 30 · 24 Jul 2026</a></div>
+      <h3 class="display">Xploding Plastix</h3>
+      <div class="meta"><b>Cinematic nu-jazz / big-beat</b> · Oslo, Norway</div>
+      <p class="bio">This Norwegian duo (Jens Petter Nilsen &amp; Hallvard Wennersberg Hagen) makes music that sounds like the soundtrack to a 1960s spy heist filtered through a glitchy laptop. They fuse slinky upright bass and jazzy keys with chopped breakbeats — organic and electronic at once, and endlessly cool. Perfect for when you want something cinematic that still grooves hard.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>Their tracks are studded with vintage film samples — 'Six Hours Starlight' lifts dialogue straight from Hitchcock's <i>North by Northwest</i>. They got a real career boost when their music started showing up everywhere in ads, TV and trailers in the early 2000s.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Amateur Girlfriends Go Proskirt Agents<span class="yr">2001</span></div>
+        <div class="why">Their debut and still their definitive statement: jazzy, suspenseful, beat-driven and impossibly stylish from the first bar.</div>
+        <div class="links"><a href="https://open.spotify.com/album/0BsWbmvjVc8RWix4rNZ2hs" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 13; display: flex;" data-search="flying lotus psychedelic beat-music / jazz-electronic los angeles, usa cosmogramma vol. 29 vol 29" id="artist-12">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b2736f0c962b04f02c839726f41f" alt="Cosmogramma cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 29</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/26yWpyWgFK6xuxi1UsLUFW?utm_source=generator&amp;theme=0" aria-label="Play Cosmogramma by Flying Lotus">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1784268491529319" target="_blank" rel="noopener" title="Open the #music post">vol. 29 · 17 Jul 2026</a></div>
+      <h3 class="display">Flying Lotus</h3>
+      <div class="meta"><b>Psychedelic beat-music / jazz-electronic</b> · Los Angeles, USA</div>
+      <p class="bio">Flying Lotus (aka Steven Ellison) is the mad genius bending hip-hop, free jazz and electronic music into swirling cosmic shapes that shouldn't work but absolutely do. His beats glitch, stutter and bloom like a living organism — somehow both head-nodding and spiritually overwhelming. Put it on and your brain genuinely rewires itself.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>He's the grand-nephew of jazz legend Alice Coltrane and a cousin of Ravi Coltrane, so that spiritual-jazz DNA runs deep. He also founded the Brainfeeder label, produced years of Adult Swim bumpers, and secretly released rap as an alter ego named Captain Murphy.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Cosmogramma<span class="yr">2010</span></div>
+        <div class="why">His sprawling magnum opus — complete with a Thom Yorke feature and cousin Ravi Coltrane on sax — blows the doors off what beat music can be.</div>
+        <div class="links"><a href="https://open.spotify.com/album/26yWpyWgFK6xuxi1UsLUFW" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 14; display: flex;" data-search="jaga jazzist maximalist nu-jazz / post-rock tønsberg, norway one-armed bandit vol. 28 vol 28" id="artist-11">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b2739696587a421484caaec51f54" alt="One-Armed Bandit cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 28</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/6Gk0nFXMulJtAle3W4vXF1?utm_source=generator&amp;theme=0" aria-label="Play One-Armed Bandit by Jaga Jazzist">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1783663695355819" target="_blank" rel="noopener" title="Open the #music post">vol. 28 · 10 Jul 2026</a></div>
+      <h3 class="display">Jaga Jazzist</h3>
+      <div class="meta"><b>Maximalist nu-jazz / post-rock</b> · Tønsberg, Norway</div>
+      <p class="bio">Jaga Jazzist are what happens when a small army of Norwegian prodigies refuse to pick one genre and cram all of them into gorgeous, layered compositions. Big-band jazz, glitchy electronics, math-rock and post-rock swelling into intricate, goosebump-inducing builds. Brainy and euphoric at the same time — and live, an absolute force of nature.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>The band started in 1994 when the Horntveth siblings were literal teenagers, with Lars just 14. They're so genre-resistant they openly shrug off the 'nu-jazz' tag everyone slaps on them, saying it never meant anything to them.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">One-Armed Bandit<span class="yr">2010</span></div>
+        <div class="why">Eight musicians, zero rules — this is the one that makes you stare at the ceiling and forget what you were doing.</div>
+        <div class="links"><a href="https://open.spotify.com/album/6Gk0nFXMulJtAle3W4vXF1" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 15; display: flex;" data-search="little dragon electronic soul-pop / synth-funk gothenburg, sweden ritual union vol. 27 vol 27" id="artist-10">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b27328e09280f58ca88eb9a5bbb1" alt="Ritual Union cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 27</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/1BQVdofe7ROnSoaiC9418p?utm_source=generator&amp;theme=0" aria-label="Play Ritual Union by Little Dragon">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1783058631927299" target="_blank" rel="noopener" title="Open the #music post">vol. 27 · 3 Jul 2026</a></div>
+      <h3 class="display">Little Dragon</h3>
+      <div class="meta"><b>Electronic soul-pop / synth-funk</b> · Gothenburg, Sweden</div>
+      <p class="bio">Little Dragon are the kind of band that makes you wonder why everyone isn't this effortlessly cool. Fronted by the magnetic Yukimi Nagano, they spin smoky, synth-drenched soul-pop that's equal parts dancefloor and 3am headphone trip. Once that voice floats over their woozy electronics, you're hooked for life.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>The name came from Yukimi's studio 'fuming tantrums' that earned her the nickname 'Little Dragon.' And Damon Albarn only found them because his partner was a fan — recruiting them for Gorillaz's 'Plastic Beach' before Yukimi even knew who Gorillaz were.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Ritual Union<span class="yr">2011</span></div>
+        <div class="why">Their tightest, hookiest distillation of everything that makes them great — with a title track that'll live in your head for weeks.</div>
+        <div class="links"><a href="https://open.spotify.com/album/1BQVdofe7ROnSoaiC9418p" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 16; display: flex;" data-search="hidden orchestra cinematic jazz-noir / electronica edinburgh, scotland archipelago vol. 26 vol 26" id="artist-9">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b273a6ae04a3515d93aa4958d90e" alt="Archipelago cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 26</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/0gpM8qWaQCDOpOMxODdYWc?utm_source=generator&amp;theme=0" aria-label="Play Archipelago by Hidden Orchestra">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1782453946821489" target="_blank" rel="noopener" title="Open the #music post">vol. 26 · 26 Jun 2026</a></div>
+      <h3 class="display">Hidden Orchestra</h3>
+      <div class="meta"><b>Cinematic jazz-noir / electronica</b> · Edinburgh, Scotland</div>
+      <p class="bio">Hidden Orchestra is the studio brainchild of multi-instrumentalist Joe Acheson, who records musicians one at a time and stitches them together as one imaginary ensemble. The result is lush, brooding cinematic music swirling jazz, classical, dub, drum-and-bass and film-score drama into something spine-tingling. Live, it explodes into a dual-drummer powerhouse.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>Acheson is obsessed with field recordings — his work 'Wingbeats' was built almost entirely from manipulated bird songs, and he'll happily sample a cooker timer or a creaking board if he likes the sound. The 'orchestra' is hidden because it never actually plays in the same room.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Archipelago<span class="yr">2012</span></div>
+        <div class="why">Modal jazz, Sufi rhythms, field recordings — their most celebrated album pulls from everywhere and somehow lands perfectly. Put it on and just let it take you somewhere.</div>
+        <div class="links"><a href="https://open.spotify.com/album/0gpM8qWaQCDOpOMxODdYWc" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 17; display: flex;" data-search="gidge organic ambient techno umeå, sweden autumn bells vol. 25 vol 25" id="artist-8">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b2739c72445324a38f73ba0fbb4a" alt="Autumn Bells cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 25</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/1g7HtsCvAtxvxhLVEHM9zm?utm_source=generator&amp;theme=0" aria-label="Play Autumn Bells by Gidge">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1781849052002689" target="_blank" rel="noopener" title="Open the #music post">vol. 25 · 19 Jun 2026</a></div>
+      <h3 class="display">Gidge</h3>
+      <div class="meta"><b>Organic ambient techno</b> · Umeå, Sweden</div>
+      <p class="bio">Gidge is the Swedish duo of Ludvig Stolterman &amp; Jonathan Nilsson, who met at 16 and bonded over electronic music in the far north of Sweden. Their sound is gorgeously cinematic ambient-techno — melting chopped vocal samples and neo-classical melody into slow-building, euphoric climaxes that feel like sunrise over a frozen forest. Headphone music that still moves a dancefloor.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>True to their Nordic roots, they've literally recorded out in the forests of Umeå, weaving in organic textures like wooden and stone percussion. The woods around their hometown aren't just an influence — they're practically a band member.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Autumn Bells<span class="yr">2014</span></div>
+        <div class="why">Their breakout debut and still their defining statement — nine tracks of immersive, emotional ambient techno critics call a modern great.</div>
+        <div class="links"><a href="https://open.spotify.com/album/1g7HtsCvAtxvxhLVEHM9zm" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 18; display: flex;" data-search="tok tok tok acoustic soul with jazz roots freiburg, germany from soul to soul vol. 24 vol 24" id="artist-7">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b273f606552e1f1ed109b8a3ca48" alt="From Soul to Soul cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 24</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/3Su1AeIdXOv6c6gJS1PPGc?utm_source=generator&amp;theme=0" aria-label="Play From Soul to Soul by Tok Tok Tok">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1781244379051539" target="_blank" rel="noopener" title="Open the #music post">vol. 24 · 12 Jun 2026</a></div>
+      <h3 class="display">Tok Tok Tok</h3>
+      <div class="meta"><b>Acoustic soul with jazz roots</b> · Freiburg, Germany</div>
+      <p class="bio">Tok Tok Tok was a German duo built around the velvet-warm voice of Tokunbo Akinro and the multi-instrumental wizardry of Morten Klein (sax, guitar, drums, even mouth percussion). They strip soul, jazz and pop to the bone and rebuild it as something intimate and groove-drenched — like a late-night conversation. Across 15 years they toured from São Paulo to Tel Aviv before bowing out in 2013.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>Frontwoman Tokunbo Akinro has a German mother and Nigerian father, and grew up in Nigeria before moving to Germany at age 10 — a double-belonging that runs all through her lyrics. The band even won the German Jazz Award for the compilation gathering their early work.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">From Soul to Soul<span class="yr">2006</span></div>
+        <div class="why">Twelve tracks of effortless soul-jazz warmth — the perfect door into their whole world.</div>
+        <div class="links"><a href="https://open.spotify.com/album/3Su1AeIdXOv6c6gJS1PPGc" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 19; display: flex;" data-search="belleruche trip-hop / 'turntable soul' london, england turntable soul music vol. 23 vol 23" id="artist-6">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b2736d9fb58f309db7aff077cbac" alt="Turntable Soul Music cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 23</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/6BCLM5uQgKFi7Rapave4vx?utm_source=generator&amp;theme=0" aria-label="Play Turntable Soul Music by Belleruche">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1780639714481489" target="_blank" rel="noopener" title="Open the #music post">vol. 23 · 5 Jun 2026</a></div>
+      <h3 class="display">Belleruche</h3>
+      <div class="meta"><b>Trip-hop / 'turntable soul'</b> · London, England</div>
+      <p class="bio">Belleruche are a gloriously analog London trio who basically invented their own genre — 'turntable soul music.' Picture Kathrin deBoer's smoky, Sarah-Vaughan-ish vocals draped over Ricky Fabulous's bluesy guitar and DJ Modest's crackly, hands-on scratching. Warm and dusty like Portishead or Morcheeba, but way more playful and live-sounding. Hear one track and you'll want the whole crate.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>The band formed by accident — Ricky and Modest were doing turntable-and-guitar sets in London bars, bumped into Kathrin at a market, and she sang over a cup of tea. Their track 'Northern Girls' later soundtracked Mercedes-Benz's 125th-anniversary UK ads.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Turntable Soul Music<span class="yr">2007</span></div>
+        <div class="why">Their debut and instant cult classic — the fastest-selling debut in Tru Thoughts' history — capturing everything that makes them special.</div>
+        <div class="links"><a href="https://open.spotify.com/album/6BCLM5uQgKFi7Rapave4vx" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 20; display: flex;" data-search="žofka electro-chanson / lounge noir zurich, switzerland melancholia vol. 22 vol 22" id="artist-5">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b273c7cbfc6be1182ef308c52089" alt="Melancholia cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 22</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/4ylNJwej85VGrxogRMW2Wk?utm_source=generator&amp;theme=0" aria-label="Play Melancholia by Žofka">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1780034709934069" target="_blank" rel="noopener" title="Open the #music post">vol. 22 · 29 May 2026</a></div>
+      <h3 class="display">Žofka</h3>
+      <div class="meta"><b>Electro-chanson / lounge noir</b> · Zurich, Switzerland</div>
+      <p class="bio">Žofka are a Zurich duo who sound like a smoky Parisian cabaret got remixed in a chic chillout lounge — producer Michal Ricar layers dreamy beats, accordion and film-score atmospherics under the velvety, soul-soaked French vocals of Myriam Russo. Nostalgic and modern at once, seductive and playfully kitschy. If you love where Air, Nouvelle Vague and a vintage Gainsbourg record overlap, these two are your people.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>Before joining Žofka in 2002, singer Myriam Russo lent her voice to none other than the Godfather of Dub, Lee 'Scratch' Perry — quite the leap from reggae-dub royalty to French-language lounge-pop.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Melancholia<span class="yr">2014</span></div>
+        <div class="why">Their most lush, fully-realised record — brooding and gorgeous all the way through.</div>
+        <div class="links"><a href="https://open.spotify.com/album/4ylNJwej85VGrxogRMW2Wk" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 21; display: flex;" data-search="skalpel nu-jazz / trip-hop from vintage samples wrocław, poland skalpel vol. 21 vol 21" id="artist-4">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b27319991109309463c762c06f51" alt="Skalpel cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 21</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/6fEN3yig9kpmZ0oiJbFRuE?utm_source=generator&amp;theme=0" aria-label="Play Skalpel by Skalpel">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1779430210897859" target="_blank" rel="noopener" title="Open the #music post">vol. 21 · 22 May 2026</a></div>
+      <h3 class="display">Skalpel</h3>
+      <div class="meta"><b>Nu-jazz / trip-hop from vintage samples</b> · Wrocław, Poland</div>
+      <p class="bio">Skalpel is the Wrocław duo of Marcin Cichy &amp; Igor Pudło — two crate-digging producers who turned dusty 1960s–70s Polish jazz LPs into smoky, head-nodding hip-hop beats. Imagine a candlelit jazz club where the band got chopped up and re-spliced by a DJ: warm vinyl crackle, double bass, brushed drums. Cinematic, cool and ridiculously easy to love.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>They were Ninja Tune's first-ever Polish signing, picked up off a self-released demo called 'Polish Jazz.' The whole sound is built from sampling Poland's own jazz golden age — essentially a love letter to their country's record collection.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Skalpel<span class="yr">2004</span></div>
+        <div class="why">Their definitive statement — the album that earned Miles Davis and Herbie Hancock comparisons and crystallizes the whole Polish-jazz-meets-beats vibe.</div>
+        <div class="links"><a href="https://open.spotify.com/album/6fEN3yig9kpmZ0oiJbFRuE" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 22; display: flex;" data-search="jazzamor bossa-nova lounge / nu-jazz germany beautiful day vol. 20 vol 20" id="artist-3">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b273646665d20a6f1c7644b414c0" alt="Beautiful Day cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 20</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/0EoIhdV6a2YuEMkTSVomxG?utm_source=generator&amp;theme=0" aria-label="Play Beautiful Day by Jazzamor">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1778825011942959" target="_blank" rel="noopener" title="Open the #music post">vol. 20 · 15 May 2026</a></div>
+      <h3 class="display">Jazzamor</h3>
+      <div class="meta"><b>Bossa-nova lounge / nu-jazz</b> · Germany</div>
+      <p class="bio">Jazzamor is a German duo (vocalist Bettina Steingass &amp; producer Roland Grosch) serving up smooth, sun-warmed lounge music with a 1960s bossa nova and Latin-jazz soul. Bettina's airy, intimate voice floats over relaxed grooves that feel like a lazy afternoon on a café terrace. The ultimate easy-listening comfort music that never feels generic.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>It started in 2001 as a pure studio project with no intention of playing live — but their very first concert kicked off a touring run across Europe and Asia. Over time they've leaned back toward live, classic-jazz instrumentation rather than programmed sounds.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Beautiful Day<span class="yr">2007</span></div>
+        <div class="why">Their most acclaimed record and the perfect lazy-Sunday soundtrack — put it on and suddenly everything feels a little more alright.</div>
+        <div class="links"><a href="https://open.spotify.com/album/0EoIhdV6a2YuEMkTSVomxG" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 23; display: flex;" data-search="lusine emotive idm / microhouse seattle, usa language barrier vol. 19 vol 19" id="artist-2">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b2739ed70a2c512f526f0567f60b" alt="Language Barrier cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 19</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/3dMPrhYAgqkXeS6p3qIXco?utm_source=generator&amp;theme=0" aria-label="Play Language Barrier by Lusine">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1778220279339799" target="_blank" rel="noopener" title="Open the #music post">vol. 19 · 8 May 2026</a></div>
+      <h3 class="display">Lusine</h3>
+      <div class="meta"><b>Emotive IDM / microhouse</b> · Seattle, USA</div>
+      <p class="bio">Lusine is Jeff McIlwain, a producer who makes meticulously crafted electronic music that's somehow both brainy and deeply warm. He blurs techno, ambient, microhouse and electro-pop into crystalline, soulful arrangements that reward headphone listening. It's the rare 'IDM' that actually has a heartbeat — and gets stuck in your head.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>He started out as 'L'usine' (French for 'the factory') before trimming it to Lusine, which happens to be Armenian for 'moon.' He's been a cornerstone of the influential Ghostly International label for over two decades.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Language Barrier<span class="yr">2007</span></div>
+        <div class="why">The album where his ambient side fully bloomed — lush chords laced with field recordings that'll make you stop what you're doing and just... listen.</div>
+        <div class="links"><a href="https://open.spotify.com/album/3dMPrhYAgqkXeS6p3qIXco" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 24; display: flex;" data-search="lemon jelly downtempo / folktronica london, england lost horizons vol. 16 vol 16" id="artist-19">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b27365e8a78ff91d2e9b56313173" alt="Lost Horizons cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 16</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/1z1dDYzcNeUCPVUhu6NqIG?utm_source=generator&amp;theme=0" aria-label="Play Lost Horizons by Lemon Jelly">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1776405971684249" target="_blank" rel="noopener" title="Open the #music post">vol. 16 · 17 Apr 2026</a></div>
+      <h3 class="display">Lemon Jelly</h3>
+      <div class="meta"><b>Downtempo / folktronica</b> · London, England</div>
+      <p class="bio">A London duo (Fred Deakin + Nick Franglen) who basically bottled a feeling and called it music. Their sound is a gorgeous swirl of downtempo beats, folktronica, found sounds and hazy psychedelia — like a Sunday afternoon that refuses to end. They came up through a series of limited-run EPs in the late '90s that became cult objects before most people even knew their name.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>They got nominated for a Mercury Prize AND a BRIT Award — a pretty wild range for a duo most people have never heard of. And every track on their final album '64–'95 sampled audio from a specific year between 1964 and 1995. That's commitment.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Lost Horizons<span class="yr">2002</span></div>
+        <div class="why">Dreamy, playful, completely transportive — this is the one that'll make you go 'how have I missed this?'</div>
+        <div class="links"><a href="https://open.spotify.com/album/1z1dDYzcNeUCPVUhu6NqIG" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 25; display: flex;" data-search="sonar kollektiv orchester orchestral funk-jazz / nu-jazz big band berlin, germany guaranteed niceness vol. 15 vol 15" id="artist-18">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b273c666433e0a003da148bc2a63" alt="Guaranteed Niceness cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 15</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/0SD7erlcim2mcKwzGXWHRb?utm_source=generator&amp;theme=0" aria-label="Play Guaranteed Niceness by Sonar Kollektiv Orchester">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1775823621591239" target="_blank" rel="noopener" title="Open the #music post">vol. 15 · 10 Apr 2026</a></div>
+      <h3 class="display">Sonar Kollektiv Orchester</h3>
+      <div class="meta"><b>Orchestral funk-jazz / nu-jazz big band</b> · Berlin, Germany</div>
+      <p class="bio">Picture a 15-piece big band born out of a birthday party — that's basically what this is. Berlin's legendary Sonar Kollektiv label turned 10 in 2007 and decided the best way to celebrate was to assemble a label super-group. The result is a lush, funky orchestra blending jazz, soul and electronica in the most joyful way imaginable.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>This wasn't some one-off vanity project — they had a proper musical director (Volker Meitz, collaborator of Jazzanova and Clara Hill), real strings, horns and vocalists. A 15-person ensemble built purely out of love for the music.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">Guaranteed Niceness<span class="yr">2008</span></div>
+        <div class="why">The name genuinely delivers — 13 tracks of orchestral funk-jazz bliss that feel like late-afternoon sunshine through a Berlin window.</div>
+        <div class="links"><a href="https://open.spotify.com/album/0SD7erlcim2mcKwzGXWHRb" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 26; display: flex;" data-search="pretty lights electro hip-hop / glitchy funk &amp; soul fort collins, colorado, usa a color map of the sun vol. 14 vol 14" id="artist-17">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b2739641aad94db8a220dcfb92df" alt="A Color Map of the Sun cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 14</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/0okq27WOMbdHpDiyCWhnZC?utm_source=generator&amp;theme=0" aria-label="Play A Color Map of the Sun by Pretty Lights">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1775196365567109" target="_blank" rel="noopener" title="Open the #music post">vol. 14 · 3 Apr 2026</a></div>
+      <h3 class="display">Pretty Lights</h3>
+      <div class="meta"><b>Electro hip-hop / glitchy funk &amp; soul</b> · Fort Collins, Colorado, USA</div>
+      <p class="bio">Derek Vincent Smith is a college dropout from Fort Collins who decided making music was way more important than a degree — and honestly, hard to argue with that call. His sound is a gorgeous collision of electro hip-hop, vintage funk and soul samples, and glitchy beats that somehow feel both nostalgic and totally futuristic.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>He gave away ALL his music for free — just put it on the internet like 'here you go, enjoy'. And Rick Rubin once called him 'the face and voice of the new American electronic music scene.' Casual.</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">A Color Map of the Sun<span class="yr">2013</span></div>
+        <div class="why">Grammy-nominated and Billboard-charting — this is the one where everything clicked, a full sonic universe to get lost in.</div>
+        <div class="links"><a href="https://open.spotify.com/album/0okq27WOMbdHpDiyCWhnZC" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article><article class="card" style="--n: 27; display: flex;" data-search="parov stelar electro swing linz, austria the princess vol. 13 vol 13" id="artist-16">
+    <div class="art">
+      <img src="./Maido's Music Corner_files/ab67616d0000b273c844214789d3a6c3e336b15d" alt="The Princess cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      <span class="tab">Vol. 13</span>
+      <button class="play" type="button" data-embed="https://open.spotify.com/embed/album/3UpqazvXFCYmC4yQDL9E8L?utm_source=generator&amp;theme=0" aria-label="Play The Princess by Parov Stelar">Play</button>
+    </div>
+    <div class="body">
+      <div class="posted"><a href="https://golightyear.slack.com/archives/C07ND642G3B/p1774598966454389" target="_blank" rel="noopener" title="Open the #music post">vol. 13 · 27 Mar 2026</a></div>
+      <h3 class="display">Parov Stelar</h3>
+      <div class="meta"><b>Electro swing</b> · Linz, Austria</div>
+      <p class="bio">Austrian producer Marcus Füreder was making electro swing cool long before anyone else thought to smash vintage jazz horns into thumping electronic beats. His music sounds like a 1930s speakeasy teleported into a Berlin club night — impossibly groovy and weirdly timeless. If you've ever wondered what jazz would sound like if it was made for dancing until 3am, this is your guy.</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>He's also a legit visual artist whose paintings have been shown in galleries worldwide. Producer, DJ and painter — the man really said why not all three?</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">The Princess<span class="yr">2012</span></div>
+        <div class="why">His most celebrated album — packed with swinging, soulful bangers that'll have you shimmying at your desk within minutes.</div>
+        <div class="links"><a href="https://open.spotify.com/album/3UpqazvXFCYmC4yQDL9E8L" target="_blank" rel="noopener">Open in Spotify ↗</a></div>
+      </div>
+    </div>
+  </article></div>
+  <div class="noresults" id="noresults" style="display: none;"></div>
+  <footer>
+    <span>Curated by Maido for the Lightyear crew</span>
+    <span><span id="footCount">28</span> picks so far · next one Friday at 9 in <a href="https://golightyear.slack.com/archives/C07ND642G3B" target="_blank" rel="noopener">#music</a></span>
+  </footer>
+</main>
+
+<script>
+const ARTISTS = [
+  {i:0,name:"Xploding Plastix",origin:"Oslo, Norway",genre:"Cinematic nu-jazz / big-beat",bio:"This Norwegian duo (Jens Petter Nilsen & Hallvard Wennersberg Hagen) makes music that sounds like the soundtrack to a 1960s spy heist filtered through a glitchy laptop. They fuse slinky upright bass and jazzy keys with chopped breakbeats — organic and electronic at once, and endlessly cool. Perfect for when you want something cinematic that still grooves hard.",fact:"Their tracks are studded with vintage film samples — 'Six Hours Starlight' lifts dialogue straight from Hitchcock's <i>North by Northwest</i>. They got a real career boost when their music started showing up everywhere in ads, TV and trailers in the early 2000s.",rel:"Amateur Girlfriends Go Proskirt Agents",yr:2001,why:"Their debut and still their definitive statement: jazzy, suspenseful, beat-driven and impossibly stylish from the first bar.",spId:"0BsWbmvjVc8RWix4rNZ2hs",art:"6d864da4ce8efabbf275cab8",spType:"album",posts:[{vol:17,date:"2026-04-25",ts:"1777127551.885719"},{vol:30,date:"2026-07-24",ts:"1784873540.697579"}]},
+  {i:1,name:"Ott",origin:"Somerset, United Kingdom",genre:"Lush psychedelic dub / psy-dub",bio:"Ott (born Ott Langrell) is the undisputed wizard of psychedelic dub, building gorgeous, bass-heavy, kaleidoscopic soundscapes that wrap around you like a warm blanket. His music is impossibly detailed and trippy without ever being cheesy — all melting echoes and organic textures. If you've ever wanted dub reggae to take you to outer space, this is your guy.",fact:"Before going solo he engineered and produced for Sinéad O'Connor, The Orb and Brian Eno, and he's a longtime collaborator of Shpongle's Simon Posford. His Hallucinogen 'In Dub' project basically reinvented psytrance as slow-motion dub and became a genre landmark.",rel:"Blumenkraft",yr:2003,why:"His most beloved solo album and the perfect intro to psy-dub, opening with the iconic 'Jack's Cheese and Bread Snack.'",spId:"09SNs519nzaxoa3um5zNGU",art:"8f91e027e9349113e52bda6d",spType:"album",posts:[{vol:18,date:"2026-05-01",ts:"1777615413.342639"},{vol:31,date:"2026-07-31",ts:"1785478117.252089"}]},
+  {i:2,name:"Lusine",origin:"Seattle, USA",genre:"Emotive IDM / microhouse",bio:"Lusine is Jeff McIlwain, a producer who makes meticulously crafted electronic music that's somehow both brainy and deeply warm. He blurs techno, ambient, microhouse and electro-pop into crystalline, soulful arrangements that reward headphone listening. It's the rare 'IDM' that actually has a heartbeat — and gets stuck in your head.",fact:"He started out as 'L'usine' (French for 'the factory') before trimming it to Lusine, which happens to be Armenian for 'moon.' He's been a cornerstone of the influential Ghostly International label for over two decades.",rel:"Language Barrier",yr:2007,why:"The album where his ambient side fully bloomed — lush chords laced with field recordings that'll make you stop what you're doing and just... listen.",spId:"3dMPrhYAgqkXeS6p3qIXco",art:"9ed70a2c512f526f0567f60b",spType:"album",posts:[{vol:19,date:"2026-05-08",ts:"1778220279.339799"}]},
+  {i:3,name:"Jazzamor",origin:"Germany",genre:"Bossa-nova lounge / nu-jazz",bio:"Jazzamor is a German duo (vocalist Bettina Steingass & producer Roland Grosch) serving up smooth, sun-warmed lounge music with a 1960s bossa nova and Latin-jazz soul. Bettina's airy, intimate voice floats over relaxed grooves that feel like a lazy afternoon on a café terrace. The ultimate easy-listening comfort music that never feels generic.",fact:"It started in 2001 as a pure studio project with no intention of playing live — but their very first concert kicked off a touring run across Europe and Asia. Over time they've leaned back toward live, classic-jazz instrumentation rather than programmed sounds.",rel:"Beautiful Day",yr:2007,why:"Their most acclaimed record and the perfect lazy-Sunday soundtrack — put it on and suddenly everything feels a little more alright.",spId:"0EoIhdV6a2YuEMkTSVomxG",art:"646665d20a6f1c7644b414c0",spType:"album",posts:[{vol:20,date:"2026-05-15",ts:"1778825011.942959"}]},
+  {i:4,name:"Skalpel",origin:"Wrocław, Poland",genre:"Nu-jazz / trip-hop from vintage samples",bio:"Skalpel is the Wrocław duo of Marcin Cichy & Igor Pudło — two crate-digging producers who turned dusty 1960s–70s Polish jazz LPs into smoky, head-nodding hip-hop beats. Imagine a candlelit jazz club where the band got chopped up and re-spliced by a DJ: warm vinyl crackle, double bass, brushed drums. Cinematic, cool and ridiculously easy to love.",fact:"They were Ninja Tune's first-ever Polish signing, picked up off a self-released demo called 'Polish Jazz.' The whole sound is built from sampling Poland's own jazz golden age — essentially a love letter to their country's record collection.",rel:"Skalpel",yr:2004,why:"Their definitive statement — the album that earned Miles Davis and Herbie Hancock comparisons and crystallizes the whole Polish-jazz-meets-beats vibe.",spId:"6fEN3yig9kpmZ0oiJbFRuE",art:"19991109309463c762c06f51",spType:"album",posts:[{vol:21,date:"2026-05-22",ts:"1779430210.897859"}]},
+  {i:5,name:"Žofka",origin:"Zurich, Switzerland",genre:"Electro-chanson / lounge noir",bio:"Žofka are a Zurich duo who sound like a smoky Parisian cabaret got remixed in a chic chillout lounge — producer Michal Ricar layers dreamy beats, accordion and film-score atmospherics under the velvety, soul-soaked French vocals of Myriam Russo. Nostalgic and modern at once, seductive and playfully kitschy. If you love where Air, Nouvelle Vague and a vintage Gainsbourg record overlap, these two are your people.",fact:"Before joining Žofka in 2002, singer Myriam Russo lent her voice to none other than the Godfather of Dub, Lee 'Scratch' Perry — quite the leap from reggae-dub royalty to French-language lounge-pop.",rel:"Melancholia",yr:2014,why:"Their most lush, fully-realised record — brooding and gorgeous all the way through.",spId:"4ylNJwej85VGrxogRMW2Wk",art:"c7cbfc6be1182ef308c52089",spType:"album",posts:[{vol:22,date:"2026-05-29",ts:"1780034709.934069"}]},
+  {i:6,name:"Belleruche",origin:"London, England",genre:"Trip-hop / 'turntable soul'",bio:"Belleruche are a gloriously analog London trio who basically invented their own genre — 'turntable soul music.' Picture Kathrin deBoer's smoky, Sarah-Vaughan-ish vocals draped over Ricky Fabulous's bluesy guitar and DJ Modest's crackly, hands-on scratching. Warm and dusty like Portishead or Morcheeba, but way more playful and live-sounding. Hear one track and you'll want the whole crate.",fact:"The band formed by accident — Ricky and Modest were doing turntable-and-guitar sets in London bars, bumped into Kathrin at a market, and she sang over a cup of tea. Their track 'Northern Girls' later soundtracked Mercedes-Benz's 125th-anniversary UK ads.",rel:"Turntable Soul Music",yr:2007,why:"Their debut and instant cult classic — the fastest-selling debut in Tru Thoughts' history — capturing everything that makes them special.",spId:"6BCLM5uQgKFi7Rapave4vx",art:"6d9fb58f309db7aff077cbac",spType:"album",posts:[{vol:23,date:"2026-06-05",ts:"1780639714.481489"}]},
+  {i:7,name:"Tok Tok Tok",origin:"Freiburg, Germany",genre:"Acoustic soul with jazz roots",bio:"Tok Tok Tok was a German duo built around the velvet-warm voice of Tokunbo Akinro and the multi-instrumental wizardry of Morten Klein (sax, guitar, drums, even mouth percussion). They strip soul, jazz and pop to the bone and rebuild it as something intimate and groove-drenched — like a late-night conversation. Across 15 years they toured from São Paulo to Tel Aviv before bowing out in 2013.",fact:"Frontwoman Tokunbo Akinro has a German mother and Nigerian father, and grew up in Nigeria before moving to Germany at age 10 — a double-belonging that runs all through her lyrics. The band even won the German Jazz Award for the compilation gathering their early work.",rel:"From Soul to Soul",yr:2006,why:"Twelve tracks of effortless soul-jazz warmth — the perfect door into their whole world.",spId:"3Su1AeIdXOv6c6gJS1PPGc",art:"f606552e1f1ed109b8a3ca48",spType:"album",posts:[{vol:24,date:"2026-06-12",ts:"1781244379.051539"}]},
+  {i:8,name:"Gidge",origin:"Umeå, Sweden",genre:"Organic ambient techno",bio:"Gidge is the Swedish duo of Ludvig Stolterman & Jonathan Nilsson, who met at 16 and bonded over electronic music in the far north of Sweden. Their sound is gorgeously cinematic ambient-techno — melting chopped vocal samples and neo-classical melody into slow-building, euphoric climaxes that feel like sunrise over a frozen forest. Headphone music that still moves a dancefloor.",fact:"True to their Nordic roots, they've literally recorded out in the forests of Umeå, weaving in organic textures like wooden and stone percussion. The woods around their hometown aren't just an influence — they're practically a band member.",rel:"Autumn Bells",yr:2014,why:"Their breakout debut and still their defining statement — nine tracks of immersive, emotional ambient techno critics call a modern great.",spId:"1g7HtsCvAtxvxhLVEHM9zm",art:"9c72445324a38f73ba0fbb4a",spType:"album",posts:[{vol:25,date:"2026-06-19",ts:"1781849052.002689"}]},
+  {i:9,name:"Hidden Orchestra",origin:"Edinburgh, Scotland",genre:"Cinematic jazz-noir / electronica",bio:"Hidden Orchestra is the studio brainchild of multi-instrumentalist Joe Acheson, who records musicians one at a time and stitches them together as one imaginary ensemble. The result is lush, brooding cinematic music swirling jazz, classical, dub, drum-and-bass and film-score drama into something spine-tingling. Live, it explodes into a dual-drummer powerhouse.",fact:"Acheson is obsessed with field recordings — his work 'Wingbeats' was built almost entirely from manipulated bird songs, and he'll happily sample a cooker timer or a creaking board if he likes the sound. The 'orchestra' is hidden because it never actually plays in the same room.",rel:"Archipelago",yr:2012,why:"Modal jazz, Sufi rhythms, field recordings — their most celebrated album pulls from everywhere and somehow lands perfectly. Put it on and just let it take you somewhere.",spId:"0gpM8qWaQCDOpOMxODdYWc",art:"a6ae04a3515d93aa4958d90e",spType:"album",posts:[{vol:26,date:"2026-06-26",ts:"1782453946.821489"}]},
+  {i:10,name:"Little Dragon",origin:"Gothenburg, Sweden",genre:"Electronic soul-pop / synth-funk",bio:"Little Dragon are the kind of band that makes you wonder why everyone isn't this effortlessly cool. Fronted by the magnetic Yukimi Nagano, they spin smoky, synth-drenched soul-pop that's equal parts dancefloor and 3am headphone trip. Once that voice floats over their woozy electronics, you're hooked for life.",fact:"The name came from Yukimi's studio 'fuming tantrums' that earned her the nickname 'Little Dragon.' And Damon Albarn only found them because his partner was a fan — recruiting them for Gorillaz's 'Plastic Beach' before Yukimi even knew who Gorillaz were.",rel:"Ritual Union",yr:2011,why:"Their tightest, hookiest distillation of everything that makes them great — with a title track that'll live in your head for weeks.",spId:"1BQVdofe7ROnSoaiC9418p",art:"28e09280f58ca88eb9a5bbb1",spType:"album",posts:[{vol:27,date:"2026-07-03",ts:"1783058631.927299"}]},
+  {i:11,name:"Jaga Jazzist",origin:"Tønsberg, Norway",genre:"Maximalist nu-jazz / post-rock",bio:"Jaga Jazzist are what happens when a small army of Norwegian prodigies refuse to pick one genre and cram all of them into gorgeous, layered compositions. Big-band jazz, glitchy electronics, math-rock and post-rock swelling into intricate, goosebump-inducing builds. Brainy and euphoric at the same time — and live, an absolute force of nature.",fact:"The band started in 1994 when the Horntveth siblings were literal teenagers, with Lars just 14. They're so genre-resistant they openly shrug off the 'nu-jazz' tag everyone slaps on them, saying it never meant anything to them.",rel:"One-Armed Bandit",yr:2010,why:"Eight musicians, zero rules — this is the one that makes you stare at the ceiling and forget what you were doing.",spId:"6Gk0nFXMulJtAle3W4vXF1",art:"9696587a421484caaec51f54",spType:"album",posts:[{vol:28,date:"2026-07-10",ts:"1783663695.355819"}]},
+  {i:12,name:"Flying Lotus",origin:"Los Angeles, USA",genre:"Psychedelic beat-music / jazz-electronic",bio:"Flying Lotus (aka Steven Ellison) is the mad genius bending hip-hop, free jazz and electronic music into swirling cosmic shapes that shouldn't work but absolutely do. His beats glitch, stutter and bloom like a living organism — somehow both head-nodding and spiritually overwhelming. Put it on and your brain genuinely rewires itself.",fact:"He's the grand-nephew of jazz legend Alice Coltrane and a cousin of Ravi Coltrane, so that spiritual-jazz DNA runs deep. He also founded the Brainfeeder label, produced years of Adult Swim bumpers, and secretly released rap as an alter ego named Captain Murphy.",rel:"Cosmogramma",yr:2010,why:"His sprawling magnum opus — complete with a Thom Yorke feature and cousin Ravi Coltrane on sax — blows the doors off what beat music can be.",spId:"26yWpyWgFK6xuxi1UsLUFW",art:"6f0c962b04f02c839726f41f",spType:"album",posts:[{vol:29,date:"2026-07-17",ts:"1784268491.529319"}]},
+  {i:13,name:"Worakls",origin:"Paris, France",genre:"Cinematic melodic house & techno",bio:"Worakls is the French producer (Kevin Rodrigues) who basically asked 'what if a film score and a club banger had a beautiful baby?' — and then pulled it off. He layers sweeping strings, piano and lush orchestration over hypnotic melodic techno, so it hits you in the chest and on the dancefloor at the same time. If you've ever wanted music that feels like the climax of a movie you can also dance to, this is your guy.",fact:"He didn't just sample orchestras — he assembled a real one. Worakls co-founded the Hungry Music label and tours as 'Worakls Orchestra,' conducting a full live ensemble at major European venues, fusing the DJ booth and the symphony hall into one show.",rel:"Porto",yr:2014,why:"His biggest hit — 90M+ streams and the perfect gateway into his cinematic-techno world.",spId:"46lfRg91uo3wq2eZEIq4dY",art:"b57c29c7d869a0f2f5f7f309",spType:"album",posts:[{vol:36,date:"2026-09-04",ts:"1788502119.386289"}]},
+  {i:14,name:"Fatboy Slim",origin:"Brighton, England",genre:"Big beat / electronic dance",bio:"Fatboy Slim is Norman Cook, the cheeky Brighton legend who basically invented the big-beat sound and turned the late-'90s into one giant sweaty dancefloor. He chops up funk, hip-hop, soul and acid house into gloriously chaotic, hook-stuffed bangers that feel like a party crammed into three minutes. If you want music that grins at you the whole way through, this is it.",fact:"Before going solo he was the bassist in indie band The Housemartins, and his iconic 'Weapon of Choice' video starring a dancing Christopher Walken almost featured Norman himself — he had to bail because his wife Zoe Ball was giving birth that weekend.",rel:"You've Come a Long Way, Baby",yr:1998,why:"The definitive big-beat record, stacked with 'The Rockafeller Skank,' 'Praise You' and 'Right Here, Right Now' — basically his greatest hits in one shot.",spId:"5dbW25KDJWBkv2gtaQdmxJ",art:"58301aa27597bf07c1c39637",spType:"album",posts:[{vol:39,date:"2026-09-25",ts:"1790316465.231589"}]},
+  {i:15,name:"Your Infamous Harp",origin:"Chicago, USA",genre:"Glitch-hop / jungle with angelic vocals",bio:"Your Infamous Harp is the husband-and-wife duo of Andy and Sara Domin, who've been making music together since 2006 and somehow turn skittering IDM, jungle breakbeats and glitch-hop into something genuinely beautiful. Picture frantic, chopped-up drum programming colliding with Sara's gorgeous angelic vocals floating right on top. It's the kind of gloriously weird, lovingly handcrafted electronic music you feel lucky to stumble into.",fact:"Their 2007 debut is titled 'Prah Suomafni Ruoy' — literally 'Your Infamous Harp' spelled backwards. They also moonlight under solo aliases Kept Blue and Ceratops, so the rabbit hole goes deeper than you'd think.",rel:"Forever Transient",yr:2010,why:"Twelve polished tracks weaving jungle, dubstep, glitch and house into one cohesive story — their most realised, front-to-back statement.",spId:"67qrVSMwEa2pPkVoel2IIC",art:"e966ddca563fe9a979ea60ed",spType:"album",posts:[{vol:40,date:"2026-10-02",ts:"1790921681.321129"}]},
+  {i:16,name:"Parov Stelar",origin:"Linz, Austria",genre:"Electro swing",bio:"Austrian producer Marcus Füreder was making electro swing cool long before anyone else thought to smash vintage jazz horns into thumping electronic beats. His music sounds like a 1930s speakeasy teleported into a Berlin club night — impossibly groovy and weirdly timeless. If you've ever wondered what jazz would sound like if it was made for dancing until 3am, this is your guy.",fact:"He's also a legit visual artist whose paintings have been shown in galleries worldwide. Producer, DJ and painter — the man really said why not all three?",rel:"The Princess",yr:2012,why:"His most celebrated album — packed with swinging, soulful bangers that'll have you shimmying at your desk within minutes.",spId:"3UpqazvXFCYmC4yQDL9E8L",art:"c844214789d3a6c3e336b15d",spType:"album",posts:[{vol:13,date:"2026-03-27",ts:"1774598966.454389"}]},
+  {i:17,name:"Pretty Lights",origin:"Fort Collins, Colorado, USA",genre:"Electro hip-hop / glitchy funk & soul",bio:"Derek Vincent Smith is a college dropout from Fort Collins who decided making music was way more important than a degree — and honestly, hard to argue with that call. His sound is a gorgeous collision of electro hip-hop, vintage funk and soul samples, and glitchy beats that somehow feel both nostalgic and totally futuristic.",fact:"He gave away ALL his music for free — just put it on the internet like 'here you go, enjoy'. And Rick Rubin once called him 'the face and voice of the new American electronic music scene.' Casual.",rel:"A Color Map of the Sun",yr:2013,why:"Grammy-nominated and Billboard-charting — this is the one where everything clicked, a full sonic universe to get lost in.",spId:"0okq27WOMbdHpDiyCWhnZC",art:"9641aad94db8a220dcfb92df",spType:"album",posts:[{vol:14,date:"2026-04-03",ts:"1775196365.567109"}]},
+  {i:18,name:"Sonar Kollektiv Orchester",origin:"Berlin, Germany",genre:"Orchestral funk-jazz / nu-jazz big band",bio:"Picture a 15-piece big band born out of a birthday party — that's basically what this is. Berlin's legendary Sonar Kollektiv label turned 10 in 2007 and decided the best way to celebrate was to assemble a label super-group. The result is a lush, funky orchestra blending jazz, soul and electronica in the most joyful way imaginable.",fact:"This wasn't some one-off vanity project — they had a proper musical director (Volker Meitz, collaborator of Jazzanova and Clara Hill), real strings, horns and vocalists. A 15-person ensemble built purely out of love for the music.",rel:"Guaranteed Niceness",yr:2008,why:"The name genuinely delivers — 13 tracks of orchestral funk-jazz bliss that feel like late-afternoon sunshine through a Berlin window.",spId:"0SD7erlcim2mcKwzGXWHRb",art:"c666433e0a003da148bc2a63",spType:"album",posts:[{vol:15,date:"2026-04-10",ts:"1775823621.591239"}]},
+  {i:19,name:"Lemon Jelly",origin:"London, England",genre:"Downtempo / folktronica",bio:"A London duo (Fred Deakin + Nick Franglen) who basically bottled a feeling and called it music. Their sound is a gorgeous swirl of downtempo beats, folktronica, found sounds and hazy psychedelia — like a Sunday afternoon that refuses to end. They came up through a series of limited-run EPs in the late '90s that became cult objects before most people even knew their name.",fact:"They got nominated for a Mercury Prize AND a BRIT Award — a pretty wild range for a duo most people have never heard of. And every track on their final album '64–'95 sampled audio from a specific year between 1964 and 1995. That's commitment.",rel:"Lost Horizons",yr:2002,why:"Dreamy, playful, completely transportive — this is the one that'll make you go 'how have I missed this?'",spId:"1z1dDYzcNeUCPVUhu6NqIG",art:"65e8a78ff91d2e9b56313173",spType:"album",posts:[{vol:16,date:"2026-04-17",ts:"1776405971.684249"}]},
+  {i:20,name:"Lu:k",origin:"Estonia",genre:"Lo-fi bedroom jungle / early Estonian D&B",bio:"Picture teenage kids in mid-'90s Estonia — a dirt-poor, brand-new republic — taping UK jungle off Finnish late-night radio because that was the only way to hear it, then rebuilding it on entry-level software, custom-made soundcards and PCs that bandmate Tõnis Valk put together himself. That's Lu:k — Virko Veskoja and friends, quietly inventing Estonian jungle and drum & bass between 1994 and 1997, before it even had a name here.",fact:"The name 'Lu:k' was picked to mean nothing — it happens to be Estonian for 'hatch' or 'trap door'. Their two cassette albums and one 12\" vanished for decades until Tallinn label Memme Vaev pressed eight of the tracks to vinyl in 2025.",rel:"Lu:k",yr:"2025 · tapes from 1994–97",why:"Eight rescued cuts, from the Minnie Riperton-sampling '94 stepper 'Lovin U' to the rave-era breakbeat of 'Kadunud leitud' — pure lo-fi bedroom jungle, weirdly ahead of its time.",art:"https://f4.bcbits.com/img/a3126679995_10.jpg",player:"https://bandcamp.com/EmbeddedPlayer/v=2/album=2914382663/size=large/bgcol=ffffff/linkcol=1236b8/tracklist=false/artwork=big/transparent=true/",playerH:470,listen:{label:"Listen on Bandcamp",url:"https://memmevaev.bandcamp.com/album/lu-k"},yt:"https://www.youtube.com/watch?v=dKsdSLcu_hw",posts:[{vol:33,date:"2026-08-14",ts:"1786687891.263169"}]},
+  {i:21,name:"TV on the Radio",origin:"Brooklyn, New York, USA",genre:"Art-rock / post-punk soul",bio:"Brooklyn art-rockers who've been doing genuinely weird, genuinely gorgeous stuff since 2001 — layered vocal loops, fuzzed-out guitars and horns colliding with post-punk and soul in ways that shouldn't work but absolutely do. Tunde Adebimpe and Dave Sitek started it as visual artists messing around, and it grew into one of the most inventive bands of the 2000s indie boom.",fact:"David Bowie loved them so much he showed up as a guest vocalist on two tracks of their 2006 album, quietly co-signing a scrappy Brooklyn band at the height of his own mystique.",rel:"Dear Science",yr:2008,why:"Their brightest, most accessible record — hip-hop beats, big hooks and zero filler, it's the perfect front door into their sound.",spId:"6RF9h1d8zkaugfMbFQGO70",art:"a6493c833ea1b6bea3642351",spType:"album",posts:[{vol:34,date:"2026-08-21",ts:"1787292455.959649"}]},
+  {i:22,name:"Blocks & Escher",origin:"London, England",genre:"Deep, cinematic drum & bass / jungle",bio:"A mysterious drum & bass duo out of London who'd rather let the music speak than chase the spotlight. Their sound sits at the moody, emotive end of D&B and jungle — deep, cinematic and built for headphones on a late-night walk.",fact:"They started out on legendary labels like Digital Soundboy and Renegade Hardware before launching their own imprint, Narratives Music — and Goldie himself once said of their work, simply, 'this is art.'",rel:"Something Blue",yr:2018,why:"Their Metalheadz full-length roams through jungle and D&B without ever losing its emotional core — the perfect way in.",spId:"1VJzGTtF0wvUS8fpk2nyWt",art:"39e114b0d201d98444b6a8de",spType:"album",posts:[{vol:35,date:"2026-08-28",ts:"1787897266.964269"}]},
+  {i:23,name:"Ruby My Dear",origin:"Toulouse, France",genre:"Melodic breakcore / IDM / jungle",bio:"Ruby My Dear is Julien Chastagnol, a Toulouse producer who took breakcore — the fastest, most chaotic corner of electronic music — and taught it to sing. Under the frantic drum programming sit haunting piano lines, dream-like atmospheres and real instruments, so every track feels like a film noir that suddenly breaks into a sprint. If you thought this stuff was just noise, he's the one who'll change your mind.",fact:"His name is a Thelonious Monk ballad and his debut album title nods to Ornette Coleman's <i>The Shape of Jazz to Come</i> — a breakcore producer who thinks like a jazz musician. He's also Igorrr's regular partner in crime: the two made the album <i>Maigre</i> together in 2014.",rel:"Brame",yr:2018,why:"Jazz meets hunting horn meets classical music meets full breakcore mayhem — with Igorrr on guitars and opera singer Laure Le Prunenec on vocals, it sounds like nothing else.",spId:"5bzbSjiKjMQI9mxzEZDAUe",art:"0f77bbc7eff23c2be772e51c",spType:"album",posts:[{vol:37,date:"2026-09-11",ts:"1789111401.538439"}]},
+  {i:24,name:"Orbital",origin:"Sevenoaks, Kent, England",genre:"Rave-era techno / electronica",bio:"Orbital are brothers Phil and Paul Hartnoll, who came out of the M25 rave scene in 1989 and became the act that made techno work as an album, a headline set and a proper emotional experience. Their sound is big, melodic and euphoric — acid squelch, cinematic strings and breakbeats building into the goosebump moments that made their Glastonbury 1994 set a legend. Thirty-odd years on they still headline festivals in the same torch glasses.",fact:"The name comes from the M25, the orbital motorway that ferried ravers to illegal parties around London. Their breakthrough single 'Chime' was recorded on their dad's cassette deck — and at the 2012 Paralympics opening ceremony Stephen Hawking joined them on stage wearing their trademark torch glasses.",rel:"Orbital 2",yr:1993,why:"The Brown Album — 'Halcyon + On + On', 'Lush 3' and 'Impact' in one place; the record that proved dance music could be an album.",spId:"1JYyYFJSYrXMHLe7Dz1B3W",art:"77b9f7b0a2ac5f99ea5f230b",spType:"album",posts:[{vol:38,date:"2026-09-18",ts:"1789711684.473559"}]},
+  {i:25,name:"Praful",origin:"Amsterdam, Netherlands",genre:"Chill-out nu-jazz / sax & electronica",bio:"Praful is a German-born saxophonist who finished a jazz degree in Amsterdam and then took a very unusual detour before his career really began. He blends jazz, acid jazz, Latin rhythms and electronica into something warm, breathy and unhurried — smoky sax and bansuri flute floating over soft electronic grooves. Built for a slow Sunday morning.",fact:"Straight out of jazz school he spent six months in an Osho ashram in India studying the bansuri flute, and came back with a new name. Years later his single 'Sigh' camped out on the Billboard charts for over 70 weeks and landed him a US deal on a label co-run by Dave Koz.",rel:"One Day Deep",yr:2001,why:"Eleven tracks of smoky, chilled-out sax and electronics — the record that made American radio fall for his Dutch-Indian-German hybrid sound.",spId:"71UgBMFnQc1gub6oorX597",art:"ba602b6e6a3e84eb52f37795",spType:"album",posts:[{vol:41,date:"2026-10-09",ts:"1791526518.462229"}]},
+  {i:26,name:"The Streets",origin:"Birmingham, England",genre:"UK garage / British rap",bio:"The Streets is Mike Skinner, a Birmingham lad who moved to Brixton at the turn of the millennium with a laptop and basically invented a whole new way of rapping. He spits over 2-step UK garage beats in his own thick geezer accent, about pints, kebabs, PlayStation and skint Fridays. Not grime, not garage, not hip-hop, but somehow all three at once — and nobody's sounded quite like it since.",fact:"He recorded his debut in a Brixton flat using an emptied-out wardrobe stuffed with duvets as his vocal booth, and the whole thing cost under £4,000 to make. He still writes his lyrics as text messages to himself.",rel:"Original Pirate Material",yr:2002,why:"The album that turned everyday British life into pop art — still sounds like nothing else over 20 years on.",spId:"0hkZGxfsFypXbjq15hM6U9",art:"06c13fa6cb965c4778692e14",spType:"album",posts:[{vol:42,date:"2026-10-16",ts:"1792134505.247769"}]},
+  {i:27,name:"Tim Exile",origin:"England",genre:"IDM / drum & bass / live electronics",bio:"Tim Exile is English producer Timothy Charles Shaw, who started on classical violin at 12 and spent the 2000s moving from dark drum & bass on Moving Shadow through warped IDM on Planet Mu to a genuinely pop-leaning record on Warp. The real draw was always the live show — entirely improvised, built from looped and pitch-shifted vocals, gabba beats and whatever synth textures he's cooking up in the moment.",fact:"He got so fed up with ordinary DJing that he built his own performance software from scratch, and Native Instruments turned it into the commercial plugins The Finger and The Mouth. He later rebuilt the idea as Endlesss, a remote jamming app that blew up during lockdown with artists like Imogen Heap jumping in.",rel:"Listening Tree",yr:2009,why:"His Warp debut and most celebrated record — the one where the noise finally turns into pop songs.",spId:"6vhxnw2bOpvdZduJ4T49K1",art:"bfa84043b66923d23259a0bf",spType:"album",posts:[{vol:43,date:"2026-10-23",ts:"1792739720.702359"}]}
+];
+
+// ---- Reveal model -----------------------------------------------------
+// The source of truth is what has actually been posted to #music (`posts`).
+// An artist is live from the moment of its first post. An unposted artist
+// carries a `planned` Friday and appears at 9 AM local that day; until then
+// it is not rendered at all. The volume number on a card is the ISO week of
+// its post (or plan) — nothing depends on a rotation any more.
+const REVEAL_HOUR=9;
+
+// Preview any moment: add ?at=2026-09-11T09:01 to the URL to see the page as
+// it will look then. Real time otherwise.
+const SIM_OFFSET=(()=>{
+  const at=new URLSearchParams(location.search).get('at');
+  if(!at)return 0;
+  const t=new Date(at).getTime();
+  return isNaN(t)?0:t-Date.now();
+})();
+const now=()=>Date.now()+SIM_OFFSET;
+
+function isoWeekInfo(d){
+  const date=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));
+  const day=date.getUTCDay()||7;
+  date.setUTCDate(date.getUTCDate()+4-day);
+  const year=date.getUTCFullYear();
+  const yearStart=new Date(Date.UTC(year,0,1));
+  return {year,week:Math.ceil((((date-yearStart)/86400000)+1)/7)};
+}
+function sameIsoWeek(t1,t2){
+  const a=isoWeekInfo(new Date(t1)),b=isoWeekInfo(new Date(t2));
+  return a.year===b.year&&a.week===b.week;
+}
+function postTime(p){return parseFloat(p.ts)*1000;}                 // Slack ts -> ms
+function localDate(iso,h){const [y,m,d]=iso.split('-').map(Number);return new Date(y,m-1,d,h||0,0,0,0);}
+function plannedTime(a){return a.planned?localDate(a.planned,REVEAL_HOUR).getTime():null;}
+
+// Every spotlight moment for an artist: the real posts if there are any,
+// otherwise the planned reveal. Each entry: {t, vol, planned}.
+function spotlights(a){
+  if(a.posts&&a.posts.length)return a.posts.map(p=>({t:postTime(p),vol:p.vol,planned:false}));
+  const t=plannedTime(a);
+  return t===null?[]:[{t,vol:isoWeekInfo(new Date(t)).week,planned:true}];
+}
+function revealAt(a){const s=spotlights(a);return s.length?Math.min(...s.map(x=>x.t)):Infinity;}
+function latestAt(a,t){const past=spotlights(a).filter(x=>x.t<=t);return past.length?Math.max(...past.map(x=>x.t)):-Infinity;}
+function isLive(a,t){return revealAt(a)<=t;}
+function volOf(a){const s=spotlights(a);return s.length?s[s.length-1].vol:null;}
+
+// The pick to feature in the banner: the most recent spotlight so far.
+function currentPick(t){
+  let best=null;
+  ARTISTS.forEach(a=>spotlights(a).forEach(x=>{if(x.t<=t&&(!best||x.t>best.t))best={a,...x};}));
+  return best;
+}
+
+// Grid order: everything revealed so far, most recently spotlighted first
+// (an encore bumps an artist back up). Upcoming picks stay hidden until 9 AM
+// on their Friday — a new one arrives every week, no need to tease it.
+function ordered(t){
+  return ARTISTS.filter(a=>isLive(a,t)).sort((a,b)=>latestAt(b,t)-latestAt(a,t));
+}
+
+// ---- Rendering ----------------------------------------------------------
+const $=id=>document.getElementById(id);
+const grid=$('grid'), noresults=$('noresults'), countEl=$('count');
+const esc=v=>String(v).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const fmtShort=d=>`${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;          // 4 Sep 2026
+const fmtDay=d=>`${DAYS[d.getDay()]} ${d.getDate()} ${MONTHS[d.getMonth()]}`;            // Fri 11 Sep
+const fmtPostDate=iso=>fmtShort(localDate(iso));
+const ART=h=>/^https?:/.test(h)?h:`https://i.scdn.co/image/ab67616d0000b273${h}`;      // Spotify hash or full URL
+const spotifyUrl=a=>`https://open.spotify.com/${a.spType}/${a.spId}`;
+const embedUrl=a=>a.player||`https://open.spotify.com/embed/${a.spType}/${a.spId}?utm_source=generator&theme=0`;
+const listen=a=>a.listen||{label:'Open in Spotify',url:spotifyUrl(a)};
+const SLACK_ARCHIVE='https://golightyear.slack.com/archives/C07ND642G3B/p';
+const postLink=p=>SLACK_ARCHIVE+p.ts.replace('.','');
+function searchText(a){
+  return (a.name+' '+a.genre+' '+a.origin+' '+a.rel+' '+(a.posts||[]).map(p=>'vol. '+p.vol+' vol '+p.vol).join(' ')).toLowerCase();
+}
+function postsHTML(a){
+  if(!a.posts||!a.posts.length)return '';
+  return `<div class="posted">${a.posts.map((p,n)=>`<a href="${postLink(p)}" target="_blank" rel="noopener" title="Open the #music post">${n>0?'<span class="enc">encore</span> ':''}vol. ${p.vol} · ${fmtPostDate(p.date)}</a>`).join('')}</div>`;
+}
+function artHTML(a,tab){
+  return `<div class="art">
+      <img src="${ART(a.art)}" alt="${esc(a.rel)} cover" loading="lazy" onerror="this.parentNode.classList.add('noart')">
+      ${tab}
+      <button class="play" type="button" data-embed="${embedUrl(a)}"${a.playerH?` data-h="${a.playerH}"`:''} aria-label="Play ${esc(a.rel)} by ${esc(a.name)}">Play</button>
+    </div>`;
+}
+function liveCardHTML(a,t,pick,n){
+  const isWeek=!!(pick&&pick.a===a&&sameIsoWeek(pick.t,t));
+  const tab=isWeek?`<span class="tab week">This week</span>`:`<span class="tab">Vol. ${volOf(a)}</span>`;
+  return `<article class="card${isWeek?' is-week':''}" style="--n:${n}" data-search="${esc(searchText(a))}" id="artist-${a.i}">
+    ${artHTML(a,tab)}
+    <div class="body">
+      ${postsHTML(a)}
+      <h3 class="display">${a.name}</h3>
+      <div class="meta"><b>${a.genre}</b> · ${a.origin}</div>
+      <p class="bio">${a.bio}</p>
+      <div class="fact"><span class="mono lbl">Did you know</span>${a.fact}</div>
+      <div class="start">
+        <span class="mono lbl">Start here</span>
+        <div class="rel">${a.rel}<span class="yr">${a.yr}</span></div>
+        <div class="why">${a.why}</div>
+        <div class="links"><a href="${listen(a).url}" target="_blank" rel="noopener">${listen(a).label} ↗</a>${a.yt?`<a href="${a.yt}" target="_blank" rel="noopener">Watch on YouTube ↗</a>`:''}</div>
+      </div>
+    </div>
+  </article>`;
+}
+function render(){
+  const t=now(), pick=currentPick(t);
+  grid.innerHTML=ordered(t).map((a,n)=>liveCardHTML(a,t,pick,n)).join('');
+  applyFilter();
+}
+
+// Play: the sleeve becomes the player (grid cards and the hero alike)
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.play,#wkPlay');
+  if(!b||!b.dataset.embed)return;
+  const box=b.id==='wkPlay'?$('heroArt'):b.closest('.art');
+  if(!box)return;
+  const f=document.createElement('iframe');
+  f.src=b.dataset.embed;f.title='Music player';
+  f.allow='autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+  if(b.dataset.h){box.classList.add('tall');f.style.height=b.dataset.h+'px';}   // fixed-height players (Bandcamp)
+  box.replaceChildren(f);
+  if(b.id==='wkPlay')b.hidden=true;
+});
+
+// Hero: this week's pick if there is one, otherwise the latest
+function paintHero(){
+  const t=now(), pick=currentPick(t);
+  const label=$('wkLabel'),name=$('wkName'),sub=$('wkSub'),why=$('wkWhy'),jump=$('wkJump'),play=$('wkPlay'),art=$('heroArt');
+  if(!pick){
+    label.textContent='First pick';name.textContent='Coming Friday';sub.textContent='9 AM, in #music';why.textContent='';
+    art.replaceChildren();art.dataset.for='';play.hidden=true;jump.hidden=true;return;
+  }
+  const a=pick.a, thisWeek=sameIsoWeek(pick.t,t);
+  label.textContent=`${thisWeek?"This week's pick":'Latest pick'} · vol. ${pick.vol} · ${fmtDay(new Date(pick.t))}`;
+  name.textContent=a.name;
+  sub.textContent=`${a.genre} · ${a.origin}`;
+  why.textContent=`Start with ${a.rel} (${a.yr}): ${a.why}`;
+  if(art.dataset.for!==String(a.i)){
+    art.dataset.for=a.i;
+    const img=new Image();img.src=ART(a.art);img.alt=`${a.rel} cover`;img.onerror=()=>art.replaceChildren();
+    art.replaceChildren(img);
+    play.hidden=false;
+  }
+  play.dataset.embed=embedUrl(a);
+  if(a.playerH)play.dataset.h=a.playerH;else delete play.dataset.h;
+  play.textContent=a.spType==='artist'&&!a.player?'Play on Spotify':'Play the album';
+  jump.hidden=false;jump.href=`#artist-${a.i}`;
+  jump.onclick=ev=>{
+    ev.preventDefault();
+    const el=$('artist-'+a.i);if(!el)return;
+    el.scrollIntoView({behavior:'smooth',block:'center'});
+    el.animate([{boxShadow:'0 0 0 2px var(--amber),0 0 0 10px rgba(242,178,51,.45)'},{boxShadow:'0 0 0 2px var(--amber),0 0 0 22px rgba(242,178,51,0)'}],{duration:900});
+  };
+}
+
+// Search
+const search=$('search');
+function applyFilter(){
+  const q=search.value.trim().toLowerCase();
+  let shown=0,live=0;
+  document.querySelectorAll('.card').forEach(c=>{
+    live++;
+    const hit=q?c.dataset.search.includes(q):true;
+    c.style.display=hit?'flex':'none';
+    if(hit)shown++;
+  });
+  noresults.style.display=shown?'none':'block';
+  noresults.textContent=shown?'':`Nothing matches “${search.value.trim()}”. Try a genre, a country, or a volume number.`;
+  countEl.textContent=q?`${shown} match${shown===1?'':'es'}`:`${live} picks so far`;
+  $('footCount').textContent=live;
+}
+search.addEventListener('input',applyFilter);
+
+// Preview note when time-travelling via ?at=
+if(SIM_OFFSET){
+  const n=$('simNote');
+  n.textContent=`Previewing as of ${new Date(now()).toLocaleString()} — remove ?at= from the URL for real time`;
+  n.hidden=false;
+}
+
+// Initial paint, then re-check every 30 s so the page reveals a new pick at 9 AM
+// (and the hero flips from "this week" to "latest" when the week rolls over).
+render();
+paintHero();
+function stateKey(t){const p=currentPick(t);return ARTISTS.filter(a=>isLive(a,t)).length+':'+(p?p.t:0)+':'+(p?sameIsoWeek(p.t,t):0);}
+let lastKey=stateKey(now());
+setInterval(()=>{
+  const key=stateKey(now());
+  if(key!==lastKey){lastKey=key;render();paintHero();}
+},30000);
+</script>
+
+
+</body></html>
