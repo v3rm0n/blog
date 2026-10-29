@@ -25,7 +25,7 @@ jobs:
     name: Publish to Cloudflare Pages
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -34,29 +34,29 @@ jobs:
         with:
           bundler-cache: true
 
+      - name: Install WebP encoder
+        run: sudo apt-get update && sudo apt-get install -y webp
+
       - name: Build site
-        run: bundle exec jekyll b -d "_site${{ steps.pages.outputs.base_path }}"
+        run: bundle exec jekyll build --destination _site
         env:
           JEKYLL_ENV: "production"
           
       - name: Cache HTMLProofer
         id: cache-htmlproofer
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: tmp/.htmlproofer
           key: ${{ runner.os }}-htmlproofer
 
       - name: Test site
         run: |
-          bundle exec htmlproofer _site \
-            \-\-disable_external \-\-ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/,/^https://fonts.gstatic.com/,/^https:\/\/fonts.googleapis.com/,/^https:\/\/www.googletagmanager.com/,/^https:\/\/www.linkedin.com/,/^https:\/\/www.raspberrypi.com/,/^http:\/\/archives.bassdrivearchive.com/"
+          bundle exec htmlproofer _site --disable-external --ignore-urls "/^http:\/\/archives\.bassdrivearchive\.com/"
 
       - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v4
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: d9229409f838e8b589fd9cf96f849799
-          projectName: blog
-          directory: "_site${{ steps.pages.outputs.base_path }}"
-          # Optional: Enable this if you want to have GitHub Deployments triggered
+          command: pages deploy _site --project-name=blog
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}

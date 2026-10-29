@@ -28,7 +28,8 @@ latest version of the **Chirpy** theme and the [CD][CD] workflow to here, so tha
 ## Prerequisites
 
 Follow the instructions in the [Jekyll Docs](https://jekyllrb.com/docs/installation/) to complete the installation of
-the basic environment. [Git](https://git-scm.com/) also needs to be installed.
+the basic environment. Use the Ruby version in `.tool-versions` and install the WebP encoder
+(`brew install webp` on macOS or `sudo apt-get install webp` on Ubuntu). [Git](https://git-scm.com/) also needs to be installed.
 
 ## Installation
 
